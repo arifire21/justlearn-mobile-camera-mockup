@@ -6,9 +6,11 @@ html, body{
   }
   
   #camera, #camera-view, #camera-canvas, #pic-output{
-      position: fixed;
-      height: 100%;
-      width: 100%;
+      position: absolute;
+      margin-left: 25%;
+      /* margin: 0 auto; */
+      height: auto;
+      width: auto;
       object-fit: cover;
   }
   
@@ -16,8 +18,16 @@ html, body{
       transform: scaleX(-1);
       filter: FlipH;
   }
+
+  /* #camera-view {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  } */
   
   #camera-btn{
+      cursor: pointer;
       width: 200px;
       background-color: black;
       color: white;
@@ -28,7 +38,7 @@ html, body{
       text-align: center;
       box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
       position: fixed;
-      bottom: 30px;
+      bottom: 40px;
       left: calc(50% - 100px);
   }
   
