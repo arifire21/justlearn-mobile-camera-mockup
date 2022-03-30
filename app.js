@@ -1,6 +1,6 @@
 var constraints = { video: { facingMode: "user" }, audio: false };
 
-const cameraView = document.querySelector("#camera-canvas"),
+const cameraView = document.querySelector("#camera-view"),
     cameraOutput = document.querySelector("#pic-output"),
     cameraSensor = document.querySelector("#camera-view"),
     cameraTrigger = document.querySelector("#camera-btn")
