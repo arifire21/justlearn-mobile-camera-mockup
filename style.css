@@ -70,3 +70,12 @@ html, body{
       top: 0;
       z-index: 5;
 }
+
+@media (max-width:420px){
+
+    #camera, #camera-view, #camera-canvas, #pic-output{
+        height: 300px;
+        width: auto;
+    }
+    
+}
