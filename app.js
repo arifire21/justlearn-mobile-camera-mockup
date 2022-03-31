@@ -1,4 +1,5 @@
-var constraints = { video: { facingMode: "user" }, audio: false };
+// 
+var constraints = { video: { facingMode: "environment" }, audio: false };
 
 const cameraView = document.querySelector("#camera-view");
 const cameraOutput = document.querySelector("#pic-output");
@@ -7,15 +8,19 @@ const cameraTrigger = document.querySelector("#camera-btn");
     
 // Access the device camera and stream to canvas
 function cameraStart() {
-    navigator.mediaDevices
-        .getUserMedia(constraints)
-        .then(function(stream) {
-        track = stream.getTracks()[0];
-        cameraView.srcObject = stream;
-    })
-    .catch(function(error) {
-        console.error("Oops. Something is broken.", error);
-    });
+    if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+        console.log("enumerateDevices is not supported.");
+    } else{
+        navigator.mediaDevices
+            .getUserMedia(constraints)
+            .then(function(stream) {
+            track = stream.getTracks()[0];
+            cameraView.srcObject = stream;
+        })
+        .catch(function(error) {
+            console.error("Oops. Something is broken.", error);
+        });
+    }
 }
 // Take a picture when button is tapped
 cameraTrigger.onclick = function() {
