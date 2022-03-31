@@ -11,6 +11,7 @@ const startButton = document.querySelector("#activate-btn");
 // Access the device camera and stream to canvas
 function cameraStart() {
     document.getElementById("full-cam-container").style.display = "block";
+    startButton.style.display = "none";
     
     if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
         console.log("enumerateDevices is not supported.");
