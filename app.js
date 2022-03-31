@@ -1,4 +1,4 @@
-// 
+// face back camera by default
 var constraints = { video: { facingMode: "environment" }, audio: false };
 
 const cameraView = document.querySelector("#camera-view");

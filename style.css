@@ -17,10 +17,10 @@ html, body{
       z-index: 1;
   }
   
-  #camera-view, #camera-canvas, #pic-output{
+  /* #camera-view, #camera-canvas, #pic-output{
       transform: scaleX(-1);
       filter: FlipH;
-  }
+  } */
 
   /* #camera-view {
     position: absolute;
