@@ -2,7 +2,7 @@ var constraints = { video: { facingMode: "user" }, audio: false };
 
 const cameraView = document.querySelector("#camera-view");
 const cameraOutput = document.querySelector("#pic-output");
-const cameraSensor = document.querySelector("#camera-view");
+const cameraSensor = document.querySelector("#camera-canvas");
 const cameraTrigger = document.querySelector("#camera-btn");
     
 // Access the device camera and stream to canvas
