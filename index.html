@@ -8,18 +8,24 @@
 </head>
 
 <body>
-    <img id="img-overlay" src="connectsystem_tree.png" alt="overlay">
-    <div id="camera">
-        <!-- canvas to grab frames -->
-        <canvas id="camera-canvas">Debug: If you see this, your browser does not support canvases.</canvas>
-        <video id="camera-view" autoplay playsinline></video>
-        <!-- pic that is taken -->
-        <img src="//:0" alt="" id="pic-output">
-        <button id="camera-btn">
-            <i class='fa fa-camera' style='color: white'></i>
-        </button>
+    <div>
+        <button id="activate-btn">Take Tree Photo</button>
     </div>
-    
+
+    <div id="full-cam-container">
+        <img id="img-overlay" src="connectsystem_tree.png" alt="overlay">
+        <div id="camera">
+            <!-- canvas to grab frames -->
+            <canvas id="camera-canvas">Debug: If you see this, your browser does not support canvases.</canvas>
+            <video id="camera-view" autoplay playsinline></video>
+            <!-- pic that is taken -->
+            <img src="//:0" alt="" id="pic-output">
+            <button id="camera-btn">
+                <i class='fa fa-camera' style='color: white'></i>
+            </button>
+        </div>
+    </div>
+
     <!-- Reference to js file -->
     <script src="app.js"></script>
 </body>

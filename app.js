@@ -5,9 +5,13 @@ const cameraView = document.querySelector("#camera-view");
 const cameraOutput = document.querySelector("#pic-output");
 const cameraSensor = document.querySelector("#camera-canvas");
 const cameraTrigger = document.querySelector("#camera-btn");
+
+const startButton = document.querySelector("#activate-btn");
     
 // Access the device camera and stream to canvas
 function cameraStart() {
+    document.getElementById("full-cam-container").style.display = "block";
+    
     if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
         console.log("enumerateDevices is not supported.");
     } else{
@@ -31,5 +35,8 @@ cameraTrigger.onclick = function() {
     cameraOutput.classList.add("taken");
 
     //todo, change to button listener
-};// Start the video stream when the window loads
-window.addEventListener("load", cameraStart, false);
+};
+// Start the video stream when the window loads
+// window.addEventListener("load", cameraStart, false);
+
+startButton.addEventListener("click", cameraStart); 
