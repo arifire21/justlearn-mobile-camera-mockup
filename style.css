@@ -7,11 +7,14 @@ html, body{
   
   #camera, #camera-view, #camera-canvas, #pic-output{
       position: absolute;
-      margin-left: 30%;
+      /* margin-left: 30%; */
       /* margin: 0 auto; */
+      left: 0;
+      top: 0;
       height: auto;
       width: auto;
       object-fit: cover;
+      z-index: 1;
   }
   
   #camera-view, #camera-canvas, #pic-output{
@@ -57,3 +60,13 @@ html, body{
       right: 20px;
       z-index: 2;
   }
+
+#img-overlay {
+      opacity: 0.5;
+      height: 400px;
+      width: 400px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 5;
+}

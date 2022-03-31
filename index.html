@@ -2,15 +2,16 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">    <!-- Name of your awesome camera app -->
-    <title>Camera App</title>
+    <title>Mobile Camera Test</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
+    <img id="img-overlay" src="connectsystem_tree.png" alt="overlay">
     <div id="camera">
         <!-- canvas to grab frames -->
-        <canvas id="camera-canvas"></canvas>
+        <canvas id="camera-canvas">Debug: If you see this, your browser does not support canvases.</canvas>
         <video id="camera-view" autoplay playsinline></video>
         <!-- pic that is taken -->
         <img src="//:0" alt="" id="pic-output">
