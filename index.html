@@ -12,19 +12,27 @@
         <button id="activate-btn">Take Tree Photo</button>
     </div>
 
+    <div id="btn-container">
+        <button id="retake-btn">Retake Photo</button>
+        <button id="upload-btn">Upload Photo</button>
+        <!-- pic that is taken -->
+        <img src="//:0" alt="" id="pic-output">
+    </div>
+
     <div id="full-cam-container">
-        <img id="img-overlay" src="wireframe-guide.png" alt="overlay">
-        <p id="img-prompt">Align horizontal line to where tree trunk meets the ground</p>
-        <div id="camera">
+
+        <!-- <div id="camera"> -->
             <!-- canvas to grab frames -->
             <canvas id="camera-canvas">Debug: If you see this, your browser does not support canvases.</canvas>
-            <video id="camera-view" autoplay playsinline></video>
-            <!-- pic that is taken -->
-            <img src="//:0" alt="" id="pic-output">
+            <div id="actual-cam">
+                <video id="camera-view" autoplay playsinline></video>
+                <img id="img-overlay" src="wireframe-guide.png" alt="overlay" class="center">
+                <p id="img-prompt">Align horizontal line to where tree trunk meets the ground</p>
+            </div>
             <button id="camera-btn">
                 <i class='fa fa-camera' style='color: white'></i>
             </button>
-        </div>
+        <!-- </div> -->
     </div>
 
     <!-- Reference to js file -->
