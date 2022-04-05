@@ -36,8 +36,8 @@ html, body{
     /* margin: 0 auto; */
     left: 0;
     top: 0;
-    height: 500px;
-    width: 400px;
+    height: 550px;
+    width: 320px;
     object-fit: cover;
     z-index: 1;
 }
@@ -132,8 +132,8 @@ html, body{
 #pic-output {
     /* display: block; */
     /* margin: 20px; */
-    height: 500px;
-    width: 400px;
+    height: 550px;
+    width: 320px;
 }
 
 #actual-cam {
@@ -151,8 +151,8 @@ html, body{
 @media (max-width:420px){
 
     #camera, #camera-view, #camera-canvas{
-        height: 500px;
-        width: 400px;
+        height: 550px;
+        width: 320px;
     }
     
 }
