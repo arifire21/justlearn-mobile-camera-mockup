@@ -29,8 +29,14 @@ function cameraStart() {
         });
     }
 }
+
+//get filename to save img
+function getFileName(str) {
+    return "really-cool-tree-pic.png"
+}
+
 // Take a picture when button is tapped
-cameraButton.onclick = function() {
+cameraButton.addEventListener("click", function() {
     cameraSensor.width = cameraView.videoWidth;
     cameraSensor.height = cameraView.videoHeight;
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
@@ -40,14 +46,21 @@ cameraButton.onclick = function() {
     //hide anything camera related to show the preview / option buttons
     document.getElementById("full-cam-container").style.display = "none";
     document.getElementById("btn-container").style.display = "block";
-};
+});
 
-retakeButton.onclick = function() {
+retakeButton.addEventListener("click", function() {
     document.getElementById("full-cam-container").style.display = "block";
     cameraOutput.src = "//:0";
     cameraOutput.classList.remove("taken");
     document.getElementById("btn-container").style.display = "none";
-};
+});
+
+saveButton.addEventListener("click", function() {
+    let imgPath = cameraOutput.getAttribute("src");
+    let fileName = getFileName(imgPath);
+
+    saveAs(imgPath, fileName);
+});
 
 // Start the video stream when the window loads
 // window.addEventListener("load", cameraStart, false);
