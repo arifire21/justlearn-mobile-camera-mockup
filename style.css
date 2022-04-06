@@ -95,8 +95,7 @@ html, body{
     text-align: center !important;
     width: auto;
     position: absolute;
-    left: 0;
-    top: 0;
+    bottom: 60;
     color: white;
 }
 
@@ -137,10 +136,10 @@ html, body{
     width: 320px; */
 }
 
-#actual-cam {
+/* #actual-cam {
     width: auto;
     height: auto;
-}
+} */
 
 .center {
     display: block;
