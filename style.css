@@ -9,14 +9,13 @@ html, body{
 #full-cam-container {
     display: none;
     /* width: max-content; */
-    height: 500px;
-    width: 400px;
+    /* height: 500px;
+    width: 400px; */
 }
 
 #activate-btn {
     cursor: pointer;
     width: 150px;
-    margin-left: 20%;
     background-color: orange;
     color: white;
     font-size: 16px;
@@ -27,17 +26,15 @@ html, body{
     box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
     position: fixed;
     top: 40px;
-    /* left: calc(50% - 100px); */
 }
   
 #camera, #camera-view, #camera-canvas{
     position: absolute;
-    /* margin-left: 30%; */
-    /* margin: 0 auto; */
     left: 0;
     top: 0;
-    height: 550px;
-    width: 320px;
+    /* height: 550px;
+    width: 320px; */
+    text-align: center;
     object-fit: cover;
     z-index: 1;
 }
@@ -77,8 +74,8 @@ html, body{
     border: solid 3px white;
     border-radius: 10px;
     box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
-    top: 20px;
-    right: 20px;
+    /* top: 20px;
+    right: 20px; */
     z-index: 6;
 }
 
@@ -88,8 +85,8 @@ html, body{
     width: 400px;
     text-align: center;
     position: relative;
-    left: 20;
-    top: 50;
+    /* left: 20;
+    top: 50; */
     z-index: 2;
 }
 
@@ -103,9 +100,13 @@ html, body{
     color: white;
 }
 
-#btn-container{
+#btn-container {
     display: none;
-    /* flex-direction: column; */
+    text-align: center;
+}
+
+#activate-btn-container {
+    text-align: center;
 }
 
 #retake-btn, #upload-btn {
@@ -132,8 +133,8 @@ html, body{
 #pic-output {
     /* display: block; */
     /* margin: 20px; */
-    height: 550px;
-    width: 320px;
+    /* height: 550px;
+    width: 320px; */
 }
 
 #actual-cam {
@@ -148,11 +149,11 @@ html, body{
     width: 50%;
   }
 
-@media (max-width:420px){
+/* @media (max-width:420px){
 
     #camera, #camera-view, #camera-canvas{
         height: 550px;
         width: 320px;
     }
     
-}
+} */
