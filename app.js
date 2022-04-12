@@ -34,7 +34,7 @@ function cameraStart() {
 
     //show camera, hide start button
     cameraContainer.style.display = "block";
-    startButton.style.display = "none";
+    document.getElementById("activate-btn-container").style.display = "none";
     
     if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
         console.log("enumerateDevices is not supported.");
@@ -52,8 +52,8 @@ function cameraStart() {
 }
 
 //get filename to save img
-function getFileName(str) {
-    return "really-cool-tree-pic.png"
+function getFileName() {
+    return "tree-kind_" + Date.now();
 }
 
 // Take a picture when button is tapped
@@ -74,11 +74,12 @@ retakeButton.addEventListener("click", function() {
     cameraOutput.src = "//:0";
     cameraOutput.classList.remove("taken");
     document.getElementById("btn-container").style.display = "none";
+    // cameraCanvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
 });
 
 saveButton.addEventListener("click", function() {
     let imgPath = cameraOutput.getAttribute("src");
-    let fileName = getFileName(imgPath);
+    let fileName = getFileName();
 
     saveAs(imgPath, fileName);
 });

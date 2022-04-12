@@ -10,6 +10,7 @@
 <body>
     <div id="activate-btn-container">
         <button id="activate-btn">Take Tree Photo</button>
+        <p class="center">Please stand in place for 10 seconds to allow for accurate location</p>
     </div>
 
     <div id="btn-container">
@@ -26,8 +27,8 @@
             <canvas id="camera-canvas">Debug: If you see this, your browser does not support canvases.</canvas>
             <div id="actual-cam">
                 <video id="camera-view" autoplay playsinline></video>
-                <img id="img-overlay" src="wireframe-guide.png" alt="overlay">
-                <p id="img-prompt">Align horizontal line to where tree trunk meets the ground</p>
+                <img class="center-wireframe" src="wireframe-guide.png" alt="overlay" width="400" height="400">
+                <p class="center-prompt">Align horizontal line to where tree trunk meets the ground</p>
             </div>
             <button id="camera-btn">
                 <i class='fa fa-camera' style='color: white'></i>
