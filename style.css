@@ -150,10 +150,11 @@ p{
 
   .center-wireframe {
     display: flex;
-    margin: 15% auto;
+    margin: 0 auto;
     position:sticky;
     z-index: 2;
-    color: white;
+    border: none;
+    /* color: white; */
   }
 
 /* @media (max-width:420px){

@@ -18,6 +18,7 @@ function cameraStart() {
     var windowHeight = window.innerHeight;
 
     //adjust sizes of everything #camera, #camera-view, #camera-canvas
+    //todo, full width and aspect height
     cameraContainer.style.width = windowWidth + "px";
     cameraContainer.style.height = windowHeight + "px";
     
@@ -26,6 +27,10 @@ function cameraStart() {
 
     cameraCanvas.style.width = windowWidth + "px";
     cameraCanvas.style.height = windowHeight + "px";
+
+    //also adjust size of prompt
+    document.getElementById("Layer_1").style.height = windowWidth + "px";
+    document.getElementById("Layer_1").style.height = windowHeight + "px";
 
     //make output slightly smaller?
     //todo set width when actually saving img
