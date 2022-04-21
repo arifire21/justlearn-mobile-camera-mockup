@@ -74,26 +74,27 @@ var geoOptions = {
     enableHighAccuracy: true,
     timeout: 5000,
     maximumAge: 0
-  };
-  
-  function geoSuccess(pos) {
+};
+
+function geoSuccess(pos) {
     var crd = pos.coords;
-  
+
     console.log('Your current position is:');
     console.log(`Latitude : ${crd.latitude}`);
     console.log(`Longitude: ${crd.longitude}`);
     console.log(`More or less ${crd.accuracy} meters.`);
-  }
-  
-  function geoError(err) {
-    if(document.location.protocol === "http:" || document.location.protocol === "file:" || document.location.protocol === "about:"){
+}
+
+function geoError(err) {
+    if (document.location.protocol === "http:" || document.location.protocol === "file:" || document.location.protocol === "about:") {
         window.alert("Geolocation is only allowed on a HTTPS (secure) connection.");
     }
-    if(err.code == 1){
+    if (err.code == 1) {
         window.alert("Geolocation is required. Please reload the page and allow geolocation access.");
+        cameraContainer.innerHTML = "Error - page reload required."
     }
     console.warn(`ERROR(${err.code}): ${err.message}`);
-  }
+}
     
 
 //get filename to save img
