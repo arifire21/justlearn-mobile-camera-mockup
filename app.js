@@ -36,13 +36,11 @@ function cameraStart() {
     //todo set width when actually saving img
     cameraOutput.style.width = (windowWidth-100) + "px";
     cameraOutput.style.height = (windowHeight-100) + "px";
-
-    //show camera, hide start button
-    cameraContainer.style.display = "block";
-    document.getElementById("activate-btn-container").style.display = "none";
     
+    //camera permissions and such
     if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
-        console.log("enumerateDevices is not supported.");
+        console.log("navigator.mediaDevices or enumerateDevices() is not supported.");
+        window.alert("navigator.mediaDevices or enumerateDevices() is not supported.");
     } else{
         navigator.mediaDevices
             .getUserMedia(constraints)
@@ -51,10 +49,52 @@ function cameraStart() {
             cameraView.srcObject = stream;
         })
         .catch(function(error) {
-            console.error("Oops. Something is broken.", error);
+            //todo -- find a way to specifically look for NotAllowedError?
+            console.error("Camera error--likely user denial:", error);
+            cameraContainer.innerHTML = "Error - page reload required."
+            window.alert("Camera access is required. Please reload the page and allow camera access.");
         });
     }
+
+    //wip-geolocation
+    if(!navigator.geolocation){
+        console.log("navigator.geolocation is not supported.");
+        window.alert("navigator.geolocation is not supported.");
+    } else {
+        navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
+    }
+
+    //show camera, hide start button
+    cameraContainer.style.display = "block";
+    document.getElementById("activate-btn-container").style.display = "none";
 }
+
+//geolocation methods
+var geoOptions = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  };
+  
+  function geoSuccess(pos) {
+    var crd = pos.coords;
+  
+    console.log('Your current position is:');
+    console.log(`Latitude : ${crd.latitude}`);
+    console.log(`Longitude: ${crd.longitude}`);
+    console.log(`More or less ${crd.accuracy} meters.`);
+  }
+  
+  function geoError(err) {
+    if(document.location.protocol === "http:" || document.location.protocol === "file:" || document.location.protocol === "about:"){
+        window.alert("Geolocation is only allowed on a HTTPS (secure) connection.");
+    }
+    if(err.code == 1){
+        window.alert("Geolocation is required. Please reload the page and allow geolocation access.");
+    }
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+  }
+    
 
 //get filename to save img
 function getFileName() {
