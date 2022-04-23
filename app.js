@@ -57,12 +57,12 @@ function cameraStart() {
     }
 
     //wip-geolocation
-    if(!navigator.geolocation){
-        console.log("navigator.geolocation is not supported.");
-        window.alert("navigator.geolocation is not supported.");
-    } else {
-        navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
-    }
+    // if(!navigator.geolocation){
+    //     console.log("navigator.geolocation is not supported.");
+    //     window.alert("navigator.geolocation is not supported.");
+    // } else {
+    //     navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
+    // }
 
     //show camera, hide start button
     cameraContainer.style.display = "block";
