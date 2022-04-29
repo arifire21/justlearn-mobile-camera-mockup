@@ -50,19 +50,19 @@ function cameraStart() {
         })
         .catch(function(error) {
             //todo -- find a way to specifically look for NotAllowedError?
-            console.error("Camera error--likely user denial:", error);
+            console.error("Camera error:", error);
             cameraContainer.innerHTML = "Error - page reload required."
             window.alert("Camera access is required. Please reload the page and allow camera access.");
         });
     }
 
     //wip-geolocation
-    // if(!navigator.geolocation){
-    //     console.log("navigator.geolocation is not supported.");
-    //     window.alert("navigator.geolocation is not supported.");
-    // } else {
-    //     navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
-    // }
+    if(!navigator.geolocation){
+        console.log("navigator.geolocation is not supported.");
+        window.alert("navigator.geolocation is not supported.");
+    } else {
+        navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
+    }
 
     //show camera, hide start button
     cameraContainer.style.display = "block";
@@ -91,7 +91,7 @@ function geoError(err) {
     }
     if (err.code == 1) {
         window.alert("Geolocation is required. Please reload the page and allow geolocation access.");
-        cameraContainer.innerHTML = "Error - page reload required."
+        // cameraContainer.innerHTML = "Error - page reload required."
     }
     console.warn(`ERROR(${err.code}): ${err.message}`);
 }
