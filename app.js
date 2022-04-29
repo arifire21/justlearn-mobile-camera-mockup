@@ -1,5 +1,5 @@
 // face back camera by default
-var constraints = { video: { facingMode: "environment" }, audio: false };
+const constraints = { video: { facingMode: "environment" }, audio: false };
 
 const cameraContainer = document.getElementById("full-cam-container");
 const cameraView = document.querySelector("#camera-view");
@@ -51,7 +51,7 @@ function cameraStart() {
         .catch(function(error) {
             //todo -- find a way to specifically look for NotAllowedError?
             console.error("Camera error:", error);
-            cameraContainer.innerHTML = "Error - page reload required."
+            cameraContainer.innerHTML = "Camera error - page reload required."
             window.alert("Camera access is required. Please reload the page and allow camera access.");
         });
     }
@@ -61,7 +61,7 @@ function cameraStart() {
         console.log("navigator.geolocation is not supported.");
         window.alert("navigator.geolocation is not supported.");
     } else {
-        navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
+        var location = navigator.geolocation.watchPosition(geoSuccess, geoError, geoOptions);
     }
 
     //show camera, hide start button
@@ -82,7 +82,7 @@ function geoSuccess(pos) {
     console.log('Your current position is:');
     console.log(`Latitude : ${crd.latitude}`);
     console.log(`Longitude: ${crd.longitude}`);
-    console.log(`More or less ${crd.accuracy} meters.`);
+    // console.log(`More or less ${crd.accuracy} meters.`);
 }
 
 function geoError(err) {
