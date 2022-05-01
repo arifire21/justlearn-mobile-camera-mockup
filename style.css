@@ -168,3 +168,11 @@ p{
     }
     
 } */
+
+#debug-lat, #debug-lon, #debug-label{
+    display: block;
+    position:sticky;
+    z-index: 12;
+    color: white;
+    font-size: 14pt;
+}

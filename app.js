@@ -79,6 +79,9 @@ var geoOptions = {
 function geoSuccess(pos) {
     var crd = pos.coords;
 
+    document.getElementById('debug-lat').innerText = "Lat: " + crd.latitude;
+    document.getElementById('debug-lon').innerText = "Lon: " + crd.longitude;
+
     console.log('Your current position is:');
     console.log(`Latitude : ${crd.latitude}`);
     console.log(`Longitude: ${crd.longitude}`);
