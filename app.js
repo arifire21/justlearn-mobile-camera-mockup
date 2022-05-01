@@ -93,7 +93,7 @@ function geoError(err) {
         window.alert("Geolocation is only allowed on a HTTPS (secure) connection.");
     }
     if (err.code == 1) {
-        window.alert("Geolocation is required. Please reload the page and allow geolocation access.");
+        window.alert("Geolocation is required.\nPlease reload the page and allow geolocation access, or check browser permission settings.");
         // cameraContainer.innerHTML = "Error - page reload required."
     }
     console.warn(`ERROR(${err.code}): ${err.message}`);
