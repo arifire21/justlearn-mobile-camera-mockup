@@ -41,16 +41,6 @@ function cameraStart() {
     //todo set width when actually saving img
     cameraOutput.style.width = (windowWidth-100) + "px";
     cameraOutput.style.height = (windowHeight-100) + "px";
-    
-    //wip-geolocation
-    //try to prompt for this first? to give time to sync location as camera loads
-    //todo--disable inner html if not allowed??
-    if(!navigator.geolocation){
-        console.log("navigator.geolocation is not supported.");
-        window.alert("navigator.geolocation is not supported.");
-    } else {
-        var location = navigator.geolocation.watchPosition(geoSuccess, geoError, geoOptions);
-    }
 
     //camera permissions and such
     if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
@@ -74,6 +64,15 @@ function cameraStart() {
     //show camera, hide start button
     cameraContainer.style.display = "block";
     document.getElementById("activate-btn-container").style.display = "none";
+
+    //prompt once camera is gotten, to allow for errorhandling if innerHTML needs to be changed
+    //wip-geolocation
+    if(!navigator.geolocation){
+        console.log("navigator.geolocation is not supported.");
+        window.alert("navigator.geolocation is not supported.");
+    } else {
+        var location = navigator.geolocation.watchPosition(geoSuccess, geoError, geoOptions);
+    }
 }
 
 //geolocation methods
