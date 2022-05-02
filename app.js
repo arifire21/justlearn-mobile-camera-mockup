@@ -104,9 +104,11 @@ function geoError(err) {
         window.alert("Geolocation is required.\nPlease reload the page and allow geolocation access, or check browser permission settings.");
         if(navigator.userAgentData.platform === "iPhone" || navigator.platform === "iPhone"){
             cameraContainer.innerHTML = "If browsing with Safari:\nGo to Settings > Location Services > Safari Website, and set to \"ask next time\" or \"while using the app.\"\nGo to Settings > Safari > Settings For Websites > Location, and set to \"Ask.\"\nReload the app and webpage."
+            console.log("phone error");
         }
         if(navigator.userAgentData.platform === "MacIntel" || navigator.platform === "MacIntel"){
             cameraContainer.innerHTML = "Go to Settings > Security and Privacy > Location Services, and enable access for your browser.\nReload the app and webpage."
+            console.log("mac error");
         }
         // cameraContainer.innerHTML = "Error - page reload required."
     }
