@@ -40,11 +40,13 @@ function cameraStart() {
     //wip-geolocation
     //try to prompt for this first? to give time to sync location as camera loads
     //todo--disable inner html if not allowed??
+    var timesTried = 0;
     if(!navigator.geolocation){
         console.log("navigator.geolocation is not supported.");
         window.alert("navigator.geolocation is not supported.");
     } else {
         var location = navigator.geolocation.watchPosition(geoSuccess, geoError, geoOptions);
+        timesTried++;
     }
 
     //camera permissions and such
@@ -66,14 +68,6 @@ function cameraStart() {
         });
     }
 
-    // //wip-geolocation
-    // if(!navigator.geolocation){
-    //     console.log("navigator.geolocation is not supported.");
-    //     window.alert("navigator.geolocation is not supported.");
-    // } else {
-    //     var location = navigator.geolocation.watchPosition(geoSuccess, geoError, geoOptions);
-    // }
-
     //show camera, hide start button
     cameraContainer.style.display = "block";
     document.getElementById("activate-btn-container").style.display = "none";
@@ -89,6 +83,7 @@ var geoOptions = {
 function geoSuccess(pos) {
     var crd = pos.coords;
 
+    document.getElementById('debug-label').innerText = "DEBUG (attempt " + timesTried + ")";
     document.getElementById('debug-lat').innerText = "Lat: " + crd.latitude;
     document.getElementById('debug-lon').innerText = "Lon: " + crd.longitude;
 
