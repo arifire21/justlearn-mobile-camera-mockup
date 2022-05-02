@@ -10,9 +10,14 @@ const cameraButton = document.querySelector("#camera-btn");
 const startButton = document.querySelector("#activate-btn");
 const retakeButton = document.querySelector("#retake-btn");
 const saveButton = document.querySelector("#upload-btn");
+
+var timesTried = 0;
     
 // Access the device camera and stream to canvas
 function cameraStart() {
+    //reset timesTried each time camera is started
+    timesTried = 0;
+    
     //get screen size on start
     var windowWidth = window.innerWidth;
     var windowHeight = window.innerHeight;
@@ -40,13 +45,11 @@ function cameraStart() {
     //wip-geolocation
     //try to prompt for this first? to give time to sync location as camera loads
     //todo--disable inner html if not allowed??
-    var timesTried = 0;
     if(!navigator.geolocation){
         console.log("navigator.geolocation is not supported.");
         window.alert("navigator.geolocation is not supported.");
     } else {
         var location = navigator.geolocation.watchPosition(geoSuccess, geoError, geoOptions);
-        timesTried++;
     }
 
     //camera permissions and such
@@ -82,6 +85,7 @@ var geoOptions = {
 
 function geoSuccess(pos) {
     var crd = pos.coords;
+    timesTried++;
 
     document.getElementById('debug-label').innerText = "DEBUG (attempt " + timesTried + ")";
     document.getElementById('debug-lat').innerText = "Lat: " + crd.latitude;
