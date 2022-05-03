@@ -97,19 +97,22 @@ function geoSuccess(pos) {
 }
 
 function geoError(err) {
+    console.log(navigator.platform)
     var instructions = document.getElementById('err-instructions');
     if (document.location.protocol === "http:" || document.location.protocol === "file:" || document.location.protocol === "about:") {
         window.alert("Geolocation is only allowed on a HTTPS (secure) connection.");
     }
     if (err.code == 1) {
         window.alert("Geolocation is required.\nPlease reload the page and allow geolocation access, or check browser permission settings.");
-        if(navigator.userAgentData.platform === "iPhone" || navigator.platform === "iPhone"){
+        if(navigator.platform === "iPhone"){ //window.navigator.userAgentData.platform === "iPhone" || 
             instructions.innerText = "If browsing with Safari:\nGo to Settings > Location Services > Safari Website, and set to \"ask next time\" or \"while using the app.\"\nGo to Settings > Safari > Settings For Websites > Location, and set to \"Ask.\"\nReload Safari and the webpage."
+            cameraContainer.style.display = "none";
             instructions.style.display = "block";
             console.log("phone error");
         }
-        if(navigator.userAgentData.platform === "MacIntel" || navigator.platform === "MacIntel"){
+        if(navigator.platform === "MacIntel"){ //window.navigator.userAgentData.platform === "MacIntel" || 
             instructions.innerText = "Go to Settings > Security and Privacy > Location Services, and enable access for your browser.\nReload the app and webpage."
+            cameraContainer.style.display = "none";
             instructions.style.display = "block";
             console.log("mac error");
         }
