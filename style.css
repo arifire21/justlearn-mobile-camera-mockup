@@ -176,3 +176,10 @@ p{
     color: white;
     font-size: 14pt;
 }
+
+#err-instructions {
+    z-index: 13;
+    display: none;
+    color: black;
+    text-align: center;
+}
