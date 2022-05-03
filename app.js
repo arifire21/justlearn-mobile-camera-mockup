@@ -39,8 +39,8 @@ function cameraStart() {
 
     //make output slightly smaller?
     //todo set width when actually saving img
-    cameraOutput.style.width = (windowWidth-100) + "px";
-    cameraOutput.style.height = (windowHeight-100) + "px";
+    // cameraOutput.style.width = (windowWidth-100) + "px";
+    // cameraOutput.style.height = (windowHeight-100) + "px";
 
     //camera permissions and such
     if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
@@ -104,14 +104,16 @@ function geoError(err) {
     }
     if (err.code == 1) {
         window.alert("Geolocation is required.\nPlease reload the page and allow geolocation access, or check browser permission settings.");
-        if(navigator.platform === "iPhone"){ //window.navigator.userAgentData.platform === "iPhone" || 
+        if(window.navigator.userAgentData.platform === "iPhone" || navigator.platform === "iPhone"){
             instructions.innerText = "If browsing with Safari:\nGo to Settings > Location Services > Safari Website, and set to \"ask next time\" or \"while using the app.\"\nGo to Settings > Safari > Settings For Websites > Location, and set to \"Ask.\"\nReload Safari and the webpage."
+            track.stop();
             cameraContainer.style.display = "none";
             instructions.style.display = "block";
             console.log("phone error");
         }
-        if(navigator.platform === "MacIntel"){ //window.navigator.userAgentData.platform === "MacIntel" || 
+        if(window.navigator.userAgentData.platform === "MacIntel" ||  navigator.platform === "MacIntel"){
             instructions.innerText = "Go to Settings > Security and Privacy > Location Services, and enable access for your browser.\nReload the app and webpage."
+            track.stop();
             cameraContainer.style.display = "none";
             instructions.style.display = "block";
             console.log("mac error");
