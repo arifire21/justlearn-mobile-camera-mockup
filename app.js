@@ -11,12 +11,21 @@ const startButton = document.querySelector("#activate-btn");
 const retakeButton = document.querySelector("#retake-btn");
 const saveButton = document.querySelector("#upload-btn");
 
+//for geolocation
 var timesTried = 0;
+var id; //for the registered handler, to unregister when done
+let cumLat = 0;
+let cumLon = 0;
+let decLat = "";
     
 // Access the device camera and stream to canvas
 function cameraStart() {
-    //reset timesTried each time camera is started
+    //reset each time camera is started
     timesTried = 0;
+    cumLat = 0;
+    cumLon = 0;
+    printedOnceGeoCheck = false;
+    printedOnceSecureCheck = false;
     
     //get screen size on start
     var windowWidth = window.innerWidth;
@@ -71,20 +80,23 @@ function cameraStart() {
         console.log("navigator.geolocation is not supported.");
         window.alert("navigator.geolocation is not supported.");
     } else {
-        var location = navigator.geolocation.watchPosition(geoSuccess, geoError, geoOptions);
+        id = navigator.geolocation.watchPosition(geoSuccess, geoError, geoOptions);
     }
 }
 
 //geolocation methods
 var geoOptions = {
     enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0
+    timeout: 500,
+    maximumAge: 1000
 };
 
+var tempLat1 = 0;
+var tempLon1 = 0;
+var tempLat2 = 0;
+var tempLon2 = 0;
 function geoSuccess(pos) {
     var crd = pos.coords;
-    timesTried++;
 
     document.getElementById('debug-label').innerText = "DEBUG (attempt " + timesTried + ")";
     document.getElementById('debug-lat').innerText = "Lat: " + crd.latitude;
@@ -93,35 +105,84 @@ function geoSuccess(pos) {
     console.log('Your current position is:');
     console.log(`Latitude : ${crd.latitude}`);
     console.log(`Longitude: ${crd.longitude}`);
-    // console.log(`More or less ${crd.accuracy} meters.`);
+
+    // cumLat += crd.latitude;
+    // cumLon += crd.longitude;
+    // console.log(`Temp Lat: ${cumLat}\nTemp Lon: ${cumLon}`)
+
+    if (timesTried <= 2) {
+        // //temp thing -- check 1st and 2nd numbers to see if the whole number has changed
+        // if(timesTried == 0){
+        //     tempLat1 = crd.latitude;
+        //     tempLon1 = crd.longitude;
+        // }
+            
+        // if(timesTried == 1){
+        //     tempLat2 = crd.latitude;
+        //     tempLon2 = crd.longitude;
+        // }
+
+        var LatStr = String(crd.latitude);
+        var LonStr = String(crd.longitude);
+        var firstValLat = LatStr.split('.')[0];
+        var firstValLon = LonStr.split('.')[0];
+
+        cumLat += parseFloat(LatStr.split('.')[1]);
+        cumLon += parseFloat(LonStr.split('.')[1]);;
+        console.log(`Temp Lat: ${cumLat}\nTemp Lon: ${cumLon}`)
+    }
+
+    if(timesTried == 3){
+        navigator.geolocation.clearWatch(id);
+        console.log("geo stopped");
+        let divLat = cumLat / 3;
+        let divLon = cumLon / 3;
+        let finalLat = firstValLat + divLat;
+        let finalLon = firstValLon + divLon;
+
+        document.getElementById('debug-label').innerText = "DEBUG (attempt " + timesTried + ") DONE";
+        document.getElementById('debug-lat').innerText = "Avg Lat: " + finalLat;
+        document.getElementById('debug-lon').innerText = "Avg Lon: " + finalLon;
+        document.getElementById('debug-label').style.color = "green";
+        document.getElementById('debug-lat').style.color = "green";
+        document.getElementById('debug-lon').style.color = "green";
+
+        console.log(`FINAL\nAvg Lat: ${finalLat}\nAvg Lon: ${finalLon}`)
+    }
+    timesTried++;
 }
 
 function geoError(err) {
-    console.log(navigator.platform)
+    // console.log(navigator.platform)
+    // console.log(window.navigator.userAgentData.platform)
     var instructions = document.getElementById('err-instructions');
-    if (document.location.protocol === "http:" || document.location.protocol === "file:" || document.location.protocol === "about:") {
+    if (!printedOnceSecureCheck && (document.location.protocol === "http:" || document.location.protocol === "file:" || document.location.protocol === "about:")) {
+        printedOnceSecureCheck = true;
         window.alert("Geolocation is only allowed on a HTTPS (secure) connection.");
     }
-    if (err.code == 1) {
-        window.alert("Geolocation is required.\nPlease reload the page and allow geolocation access, or check browser permission settings.");
-        if(window.navigator.userAgentData.platform === "iPhone" || navigator.platform === "iPhone"){
+
+    if (err.code == 1 && !printedOnceGeoCheck) {
+        printedOnceGeoCheck = true;
+        window.alert("Geolocation is required.\nPlease follow the displayed instructions.");
+        if(navigator.platform === "iPhone"){
             instructions.innerText = "If browsing with Safari:\nGo to Settings > Location Services > Safari Website, and set to \"ask next time\" or \"while using the app.\"\nGo to Settings > Safari > Settings For Websites > Location, and set to \"Ask.\"\nReload Safari and the webpage."
             track.stop();
             cameraContainer.style.display = "none";
             instructions.style.display = "block";
             console.log("phone error");
         }
-        if(window.navigator.userAgentData.platform === "MacIntel" ||  navigator.platform === "MacIntel"){
+        if(navigator.platform === "MacIntel"){
             instructions.innerText = "Go to Settings > Security and Privacy > Location Services, and enable access for your browser.\nReload the app and webpage."
             track.stop();
             cameraContainer.style.display = "none";
             instructions.style.display = "block";
             console.log("mac error");
         }
-        // cameraContainer.innerHTML = "Error - page reload required."
     }
     console.warn(`ERROR(${err.code}): ${err.message}`);
 }
+
+function calcAverages(){}
     
 
 //get filename to save img
