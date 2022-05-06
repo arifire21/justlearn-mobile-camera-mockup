@@ -95,6 +95,10 @@ var tempLat1 = 0;
 var tempLon1 = 0;
 var tempLat2 = 0;
 var tempLon2 = 0;
+var LatStr = "";
+var LonStr = "";
+var firstValLat = 0;
+var firstValLon = 0;
 function geoSuccess(pos) {
     var crd = pos.coords;
 
@@ -129,10 +133,10 @@ function geoSuccess(pos) {
         console.log(`Latitude : ${crd.latitude}`);
         console.log(`Longitude: ${crd.longitude}`);
 
-        var LatStr = String(crd.latitude);
-        var LonStr = String(crd.longitude);
-        var firstValLat = parseFloat(LatStr.split('.')[0]);
-        var firstValLon = parseFloat(LonStr.split('.')[0]);
+        LatStr = String(crd.latitude);
+        LonStr = String(crd.longitude);
+        firstValLat = parseFloat(LatStr.split('.')[0]);
+        firstValLon = parseFloat(LonStr.split('.')[0]);
         console.log(`Temp Lat: ${firstValLat}\nTemp Lon: ${firstValLon}`)
 
         cumLat += parseFloat(LatStr.split('.')[1]);
