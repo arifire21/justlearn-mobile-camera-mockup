@@ -16,17 +16,31 @@ var timesTried = 0;
 var id; //for the registered handler, to unregister when done
 let cumLat = 0;
 let cumLon = 0;
-let decLat = "";
-    
-// Access the device camera and stream to canvas
-function cameraStart() {
-    //reset each time camera is started
+let locationConfirmed = false;
+
+function startGeolocation() {
+    //reset each time app is started
     timesTried = 0;
     cumLat = 0;
     cumLon = 0;
     printedOnceGeoCheck = false;
     printedOnceSecureCheck = false;
+    locationConfirmed = false;
+
+    if(!navigator.geolocation){
+        console.log("navigator.geolocation is not supported.");
+        window.alert("navigator.geolocation is not supported.");
+    } else {
+        id = navigator.geolocation.watchPosition(geoSuccess, geoError, geoOptions);
+    }
+    //after location is confirmed, start camera
+    if(locationConfirmed){
+        startCamera();
+    }
+}
     
+// Access the device camera and stream to canvas
+function startCamera() {
     //get screen size on start
     var windowWidth = window.innerWidth;
     var windowHeight = window.innerHeight;
@@ -73,15 +87,6 @@ function cameraStart() {
     //show camera, hide start button
     cameraContainer.style.display = "block";
     document.getElementById("activate-btn-container").style.display = "none";
-
-    //prompt once camera is gotten, to allow for errorhandling if innerHTML needs to be changed
-    //wip-geolocation
-    if(!navigator.geolocation){
-        console.log("navigator.geolocation is not supported.");
-        window.alert("navigator.geolocation is not supported.");
-    } else {
-        id = navigator.geolocation.watchPosition(geoSuccess, geoError, geoOptions);
-    }
 }
 
 //geolocation methods
@@ -148,6 +153,7 @@ function geoSuccess(pos) {
         document.getElementById('debug-lon').style.color = "green";
 
         console.log(`FINAL\nAvg Lat: ${finalLat}\nAvg Lon: ${finalLon}`)
+        locationConfirmed = true
     }
     timesTried++;
 }
@@ -165,7 +171,7 @@ function geoError(err) {
         printedOnceGeoCheck = true;
         window.alert("Geolocation is required.\nPlease follow the displayed instructions.");
         if(navigator.platform === "iPhone"){
-            instructions.innerText = "If browsing with Safari:\nGo to Settings > Location Services > Safari Website, and set to \"ask next time\" or \"while using the app.\"\nGo to Settings > Safari > Settings For Websites > Location, and set to \"Ask.\"\nReload Safari and the webpage."
+            instructions.innerText = "If browsing with Safari:\nGo to Settings > Location Services > Safari Website, and set to \"ask next time\" or \"while using the app.\"\nGo to Settings > Safari > Settings For Websites > Location, and set to \"Ask.\"\nReload Safari and the webpage.\nSelect \"allow once\" when prompted."
             track.stop();
             cameraContainer.style.display = "none";
             instructions.style.display = "block";
@@ -180,10 +186,7 @@ function geoError(err) {
         }
     }
     console.warn(`ERROR(${err.code}): ${err.message}`);
-}
-
-function calcAverages(){}
-    
+}    
 
 //get filename to save img
 function getFileName() {
@@ -214,10 +217,9 @@ retakeButton.addEventListener("click", function() {
 saveButton.addEventListener("click", function() {
     let imgPath = cameraOutput.getAttribute("src");
     let fileName = getFileName();
-
+    //from FileSaver
     saveAs(imgPath, fileName);
 });
 
-// Start the video stream when the window loads
-// window.addEventListener("load", cameraStart, false);
-startButton.addEventListener("click", cameraStart); 
+// Start the app when the window loads
+startButton.addEventListener("click", startGeolocation); 
