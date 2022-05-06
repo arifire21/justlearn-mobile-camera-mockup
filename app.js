@@ -129,19 +129,17 @@ function geoSuccess(pos) {
         document.getElementById('debug-lat').innerText = "Lat: " + crd.latitude;
         document.getElementById('debug-lon').innerText = "Lon: " + crd.longitude;
     
-        console.log('Your current position is:');
-        console.log(`Latitude : ${crd.latitude}`);
-        console.log(`Longitude: ${crd.longitude}`);
+        console.log(`ATTEMPT: ${timesTried}\nYour current position is:\nLatitude : ${crd.latitude}\nLongitude: ${crd.longitude}`);
 
         LatStr = String(crd.latitude);
         LonStr = String(crd.longitude);
         firstValLat = parseFloat(LatStr.split('.')[0]);
         firstValLon = parseFloat(LonStr.split('.')[0]);
-        console.log(`Temp Lat: ${firstValLat}\nTemp Lon: ${firstValLon}`)
+        console.log(`Temp Lat (whole num): ${firstValLat}\nTemp Lon (whole num): ${firstValLon}`)
 
         cumLat += parseFloat(LatStr.split('.')[1]);
         cumLon += parseFloat(LonStr.split('.')[1]);;
-        console.log(`Temp Lat: ${cumLat}\nTemp Lon: ${cumLon}`)
+        console.log(`Temp Lat (decimal): ${cumLat}\nTemp Lon (decimal): ${cumLon}`)
     }
 
     if(timesTried == 3){
