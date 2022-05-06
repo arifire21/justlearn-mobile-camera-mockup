@@ -1,5 +1,6 @@
 // face back camera by default
 const constraints = { video: { facingMode: "environment" }, audio: false };
+const aspectRatioConst = 2;
 
 const cameraContainer = document.getElementById("full-cam-container");
 const cameraView = document.querySelector("#camera-view");
@@ -42,15 +43,17 @@ function startCamera() {
     var windowHeight = window.innerHeight;
 
     //adjust sizes of everything #camera, #camera-view, #camera-canvas
-    //todo, full width and aspect height
     cameraContainer.style.width = windowWidth + "px";
-    cameraContainer.style.height = windowHeight + "px";
-    
+    // cameraContainer.style.height = windowHeight + "px";
+    cameraContainer.style.height = (windowWidth * aspectRatioConst) + "px";
+
     cameraView.style.width = windowWidth + "px";
-    cameraView.style.height = windowHeight + "px";
+    // cameraView.style.height = windowHeight + "px";
+    cameraView.style.height = (windowWidth * aspectRatioConst) + "px";
 
     cameraCanvas.style.width = windowWidth + "px";
-    cameraCanvas.style.height = windowHeight + "px";
+    // cameraCanvas.style.height = windowHeight + "px";
+    cameraCanvas.style.height = (windowWidth * aspectRatioConst) + "px";
 
     //also adjust size of prompt
     document.getElementById("Layer_1").style.height = windowWidth + "px";
