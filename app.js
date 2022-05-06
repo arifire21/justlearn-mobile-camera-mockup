@@ -80,9 +80,8 @@ function startCamera() {
         });
     }
 
-    //show camera, hide start button
+    //show camera
     cameraContainer.style.display = "block";
-    document.getElementById("activate-btn-container").style.display = "none";
 }
 
 //geolocation methods
@@ -146,8 +145,14 @@ function geoSuccess(pos) {
         console.log("geo stopped");
         let divLat = cumLat / 3;
         let divLon = cumLon / 3;
-        let finalLat = firstValLat + divLat;
-        let finalLon = firstValLon + divLon;
+        //debug bullshit, turn everything back into strings
+        String(firstValLat); String(divLat); String(firstValLon); String(divLon);
+        let debugStringLat = firstValLat.concat(".", divLat);
+        let debugStringLon = firstValLon.concat(".", divLon);
+        let finalLat = parseFloat(debugStringLat);
+        let finalLon = parseFloat(debugStringLon);
+        // let finalLat = firstValLat + divLat;
+        // let finalLon = firstValLon + divLon;
 
         document.getElementById('debug-label').innerText = "DEBUG (attempt " + timesTried + ") DONE";
         document.getElementById('debug-lat').innerText = "Avg Lat: " + finalLat;
@@ -160,6 +165,7 @@ function geoSuccess(pos) {
         locationConfirmed = true
         //after location is confirmed, start camera
         if(locationConfirmed){
+            document.getElementById("activate-btn-container").style.display = "none";
             startCamera();
         }
     }
