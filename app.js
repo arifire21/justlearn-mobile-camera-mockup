@@ -150,7 +150,7 @@ function geoSuccess(pos) {
         let divLat = cumLat / 3;
         let divLon = cumLon / 3;
         //debug bullshit, turn everything back into strings
-        String(firstValLat); String(divLat); String(firstValLon); String(divLon);
+        firstValLat = String(firstValLat); divLat =  String(divLat); firstValLon = String(firstValLon); divLon = String(divLon);
         let debugStringLat = firstValLat.concat(".", divLat);
         let debugStringLon = firstValLon.concat(".", divLon);
         let finalLat = parseFloat(debugStringLat);
