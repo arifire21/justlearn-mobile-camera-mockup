@@ -33,10 +33,6 @@ function startGeolocation() {
     } else {
         id = navigator.geolocation.watchPosition(geoSuccess, geoError, geoOptions);
     }
-    //after location is confirmed, start camera
-    if(locationConfirmed){
-        startCamera();
-    }
 }
     
 // Access the device camera and stream to canvas
@@ -103,13 +99,13 @@ var tempLon2 = 0;
 function geoSuccess(pos) {
     var crd = pos.coords;
 
-    document.getElementById('debug-label').innerText = "DEBUG (attempt " + timesTried + ")";
-    document.getElementById('debug-lat').innerText = "Lat: " + crd.latitude;
-    document.getElementById('debug-lon').innerText = "Lon: " + crd.longitude;
+    // document.getElementById('debug-label').innerText = "DEBUG (attempt " + timesTried + ")";
+    // document.getElementById('debug-lat').innerText = "Lat: " + crd.latitude;
+    // document.getElementById('debug-lon').innerText = "Lon: " + crd.longitude;
 
-    console.log('Your current position is:');
-    console.log(`Latitude : ${crd.latitude}`);
-    console.log(`Longitude: ${crd.longitude}`);
+    // console.log('Your current position is:');
+    // console.log(`Latitude : ${crd.latitude}`);
+    // console.log(`Longitude: ${crd.longitude}`);
 
     // cumLat += crd.latitude;
     // cumLon += crd.longitude;
@@ -126,11 +122,19 @@ function geoSuccess(pos) {
         //     tempLat2 = crd.latitude;
         //     tempLon2 = crd.longitude;
         // }
+        document.getElementById('debug-label').innerText = "DEBUG (attempt " + timesTried + ")";
+        document.getElementById('debug-lat').innerText = "Lat: " + crd.latitude;
+        document.getElementById('debug-lon').innerText = "Lon: " + crd.longitude;
+    
+        console.log('Your current position is:');
+        console.log(`Latitude : ${crd.latitude}`);
+        console.log(`Longitude: ${crd.longitude}`);
 
         var LatStr = String(crd.latitude);
         var LonStr = String(crd.longitude);
         var firstValLat = parseFloat(LatStr.split('.')[0]);
         var firstValLon = parseFloat(LonStr.split('.')[0]);
+        console.log(`Temp Lat: ${firstValLat}\nTemp Lon: ${firstValLon}`)
 
         cumLat += parseFloat(LatStr.split('.')[1]);
         cumLon += parseFloat(LonStr.split('.')[1]);;
@@ -154,6 +158,10 @@ function geoSuccess(pos) {
 
         console.log(`FINAL\nAvg Lat: ${finalLat}\nAvg Lon: ${finalLon}`)
         locationConfirmed = true
+        //after location is confirmed, start camera
+        if(locationConfirmed){
+            startCamera();
+        }
     }
     timesTried++;
 }
