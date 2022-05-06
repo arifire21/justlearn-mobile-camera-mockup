@@ -191,16 +191,18 @@ function geoError(err) {
         window.alert("Geolocation is required.\nPlease follow the displayed instructions.");
         if(navigator.platform === "iPhone"){
             instructions.innerText = "If browsing with Safari:\nGo to Settings > Location Services > Safari Website, and set to \"ask next time\" or \"while using the app.\"\nGo to Settings > Safari > Settings For Websites > Location, and set to \"Ask.\"\nReload Safari and the webpage.\nSelect \"allow once\" when prompted."
-            track.stop();
-            cameraContainer.style.display = "none";
+            // track.stop();
+            document.getElementById("activate-btn-container").style.display = "none";
             instructions.style.display = "block";
+            cameraContainer.style.display = "none";
             console.log("phone error");
         }
         if(navigator.platform === "MacIntel"){
             instructions.innerText = "Go to Settings > Security and Privacy > Location Services, and enable access for your browser.\nReload the app and webpage."
-            track.stop();
-            cameraContainer.style.display = "none";
+            // track.stop();
+            document.getElementById("activate-btn-container").style.display = "none";
             instructions.style.display = "block";
+            cameraContainer.style.display = "none";
             console.log("mac error");
         }
     }
