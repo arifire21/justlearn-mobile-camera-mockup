@@ -1,6 +1,5 @@
 // face back camera by default
 const constraints = { video: { facingMode: "environment" }, audio: false };
-const aspectRatioConst = 2;
 
 const cameraContainer = document.getElementById("full-cam-container");
 const cameraView = document.querySelector("#camera-view");
@@ -11,6 +10,10 @@ const cameraButton = document.querySelector("#camera-btn");
 const startButton = document.querySelector("#activate-btn");
 const retakeButton = document.querySelector("#retake-btn");
 const saveButton = document.querySelector("#upload-btn");
+
+//const variables
+const aspectRatioConst = 1.5;
+const numLocationTries = 3;
 
 //for geolocation
 var timesTried = 0;
@@ -90,7 +93,7 @@ function startCamera() {
 //geolocation methods
 var geoOptions = {
     enableHighAccuracy: true,
-    timeout: 500,
+    timeout: 800,
     maximumAge: 1000
 };
 
@@ -117,7 +120,7 @@ function geoSuccess(pos) {
     // cumLon += crd.longitude;
     // console.log(`Temp Lat: ${cumLat}\nTemp Lon: ${cumLon}`)
 
-    if (timesTried <= 2) {
+    if (timesTried <= numLocationTries-1) {
         // //temp thing -- check 1st and 2nd numbers to see if the whole number has changed
         // if(timesTried == 0){
         //     tempLat1 = crd.latitude;
@@ -145,11 +148,11 @@ function geoSuccess(pos) {
         console.log(`Temp Lat (decimal): ${cumLat}\nTemp Lon (decimal): ${cumLon}`)
     }
 
-    if(timesTried == 3){
+    if(timesTried == numLocationTries){
         navigator.geolocation.clearWatch(id);
         console.log("geo stopped");
-        let divLat = cumLat / 3;
-        let divLon = cumLon / 3;
+        let divLat = cumLat / numLocationTries;
+        let divLon = cumLon / numLocationTries;
         //debug bullshit, turn everything back into strings
         firstValLat = String(firstValLat); divLat =  String(divLat); firstValLon = String(firstValLon); divLon = String(divLon);
         let debugStringLat = firstValLat.concat(".", divLat);
