@@ -124,8 +124,8 @@ function geoSuccess(pos) {
 
         var LatStr = String(crd.latitude);
         var LonStr = String(crd.longitude);
-        var firstValLat = LatStr.split('.')[0];
-        var firstValLon = LonStr.split('.')[0];
+        var firstValLat = parseFloat(LatStr.split('.')[0]);
+        var firstValLon = parseFloat(LonStr.split('.')[0]);
 
         cumLat += parseFloat(LatStr.split('.')[1]);
         cumLon += parseFloat(LonStr.split('.')[1]);;
