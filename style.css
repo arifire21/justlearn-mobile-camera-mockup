@@ -172,7 +172,7 @@ p{
 #debug-lat, #debug-lon, #debug-label{
     display: block;
     position:sticky;
-    z-index: 12;
+    z-index: 999;
     color: black;
     font-size: 14pt;
 }

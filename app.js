@@ -20,7 +20,11 @@ var timesTried = 0;
 var id; //for the registered handler, to unregister when done
 let cumLat = 0;
 let cumLon = 0;
-let locationConfirmed = false;
+// let locationConfirmed = false;
+var longitudeArr = [];
+var latitudeArr = [];
+var lastStoredLon = 0.0;
+var lastStoredLat = 0.0;
 
 function startGeolocation() {
     //reset each time app is started
@@ -30,6 +34,10 @@ function startGeolocation() {
     printedOnceGeoCheck = false;
     printedOnceSecureCheck = false;
     locationConfirmed = false;
+    longitudeArr = [];
+    latitudeArr = [];
+    lastStoredLon = 0.0;
+    lastStoredLat = 0.0;
 
     if(!navigator.geolocation){
         console.log("navigator.geolocation is not supported.");
@@ -62,10 +70,10 @@ function startCamera() {
     document.getElementById("Layer_1").style.height = windowWidth + "px";
     document.getElementById("Layer_1").style.height = windowHeight + "px";
 
-    //make output slightly smaller?
-    //todo set width when actually saving img
     // cameraOutput.style.width = (windowWidth-100) + "px";
     // cameraOutput.style.height = (windowHeight-100) + "px";
+    cameraOutput.style.width = windowWidth + "px";
+    cameraOutput.style.height = (windowWidth * aspectRatioConst) + "px";
 
     //camera permissions and such
     if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
@@ -88,6 +96,7 @@ function startCamera() {
 
     //show camera
     cameraContainer.style.display = "block";
+    startGeolocation()
 }
 
 //geolocation methods
@@ -97,14 +106,14 @@ var geoOptions = {
     maximumAge: 1000
 };
 
-var tempLat1 = 0;
-var tempLon1 = 0;
-var tempLat2 = 0;
-var tempLon2 = 0;
-var LatStr = "";
-var LonStr = "";
-var firstValLat = 0;
-var firstValLon = 0;
+var tempLat1 = 0.0;
+var tempLon1 = 0.0;
+// var tempLat2 = 0;
+// var tempLon2 = 0;
+// var LatStr = "";
+// var LonStr = "";
+// var firstValLat = 0;
+// var firstValLon = 0;
 function geoSuccess(pos) {
     var crd = pos.coords;
 
@@ -120,63 +129,79 @@ function geoSuccess(pos) {
     // cumLon += crd.longitude;
     // console.log(`Temp Lat: ${cumLat}\nTemp Lon: ${cumLon}`)
 
-    if (timesTried <= numLocationTries-1) {
-        // //temp thing -- check 1st and 2nd numbers to see if the whole number has changed
-        // if(timesTried == 0){
-        //     tempLat1 = crd.latitude;
-        //     tempLon1 = crd.longitude;
-        // }
+    //for precheck
+    // if (timesTried <= numLocationTries-1) {
+    //     // //temp thing -- check 1st and 2nd numbers to see if the whole number has changed
+    //     // if(timesTried == 0){
+    //     //     tempLat1 = crd.latitude;
+    //     //     tempLon1 = crd.longitude;
+    //     // }
             
-        // if(timesTried == 1){
-        //     tempLat2 = crd.latitude;
-        //     tempLon2 = crd.longitude;
-        // }
-        document.getElementById('debug-label').innerText = "DEBUG (attempt " + timesTried + ")";
-        document.getElementById('debug-lat').innerText = "Lat: " + crd.latitude;
-        document.getElementById('debug-lon').innerText = "Lon: " + crd.longitude;
+    //     // if(timesTried == 1){
+    //     //     tempLat2 = crd.latitude;
+    //     //     tempLon2 = crd.longitude;
+    //     // }
+    //     document.getElementById('debug-label').innerText = "DEBUG (attempt " + timesTried + ")";
+    //     document.getElementById('debug-lat').innerText = "Lat: " + crd.latitude;
+    //     document.getElementById('debug-lon').innerText = "Lon: " + crd.longitude;
     
-        console.log(`ATTEMPT: ${timesTried}\nYour current position is:\nLatitude : ${crd.latitude}\nLongitude: ${crd.longitude}`);
+    //     console.log(`ATTEMPT: ${timesTried}\nYour current position is:\nLatitude : ${crd.latitude}\nLongitude: ${crd.longitude}`);
 
-        LatStr = String(crd.latitude);
-        LonStr = String(crd.longitude);
-        firstValLat = parseFloat(LatStr.split('.')[0]);
-        firstValLon = parseFloat(LonStr.split('.')[0]);
-        console.log(`Temp Lat (whole num): ${firstValLat}\nTemp Lon (whole num): ${firstValLon}`)
+    //     LatStr = String(crd.latitude);
+    //     LonStr = String(crd.longitude);
+    //     firstValLat = parseFloat(LatStr.split('.')[0]);
+    //     firstValLon = parseFloat(LonStr.split('.')[0]);
+    //     console.log(`Temp Lat (whole num): ${firstValLat}\nTemp Lon (whole num): ${firstValLon}`)
 
-        cumLat += parseFloat(LatStr.split('.')[1]);
-        cumLon += parseFloat(LonStr.split('.')[1]);;
-        console.log(`Temp Lat (decimal): ${cumLat}\nTemp Lon (decimal): ${cumLon}`)
-    }
+    //     cumLat += parseFloat(LatStr.split('.')[1]);
+    //     cumLon += parseFloat(LonStr.split('.')[1]);;
+    //     console.log(`Temp Lat (decimal): ${cumLat}\nTemp Lon (decimal): ${cumLon}`)
+    // }
 
-    if(timesTried == numLocationTries){
-        navigator.geolocation.clearWatch(id);
-        console.log("geo stopped");
-        let divLat = cumLat / numLocationTries;
-        let divLon = cumLon / numLocationTries;
-        //debug bullshit, turn everything back into strings
-        firstValLat = String(firstValLat); divLat =  String(divLat); firstValLon = String(firstValLon); divLon = String(divLon);
-        let debugStringLat = firstValLat.concat(".", divLat);
-        let debugStringLon = firstValLon.concat(".", divLon);
-        let finalLat = parseFloat(debugStringLat);
-        let finalLon = parseFloat(debugStringLon);
-        // let finalLat = firstValLat + divLat;
-        // let finalLon = firstValLon + divLon;
+    // if(timesTried == numLocationTries){
+    //     navigator.geolocation.clearWatch(id);
+    //     console.log("geo stopped");
+    //     let divLat = cumLat / numLocationTries;
+    //     let divLon = cumLon / numLocationTries;
+    //     //debug bullshit, turn everything back into strings
+    //     firstValLat = String(firstValLat); divLat =  String(divLat); firstValLon = String(firstValLon); divLon = String(divLon);
+    //     let debugStringLat = firstValLat.concat(".", divLat);
+    //     let debugStringLon = firstValLon.concat(".", divLon);
+    //     let finalLat = parseFloat(debugStringLat);
+    //     let finalLon = parseFloat(debugStringLon);
+    //     // let finalLat = firstValLat + divLat;
+    //     // let finalLon = firstValLon + divLon;
 
-        document.getElementById('debug-label').innerText = "DEBUG (attempt " + timesTried + ") DONE";
-        document.getElementById('debug-lat').innerText = "Avg Lat: " + finalLat;
-        document.getElementById('debug-lon').innerText = "Avg Lon: " + finalLon;
-        document.getElementById('debug-label').style.color = "green";
-        document.getElementById('debug-lat').style.color = "green";
-        document.getElementById('debug-lon').style.color = "green";
+        // document.getElementById('debug-label').innerText = "DEBUG (attempt " + timesTried + ") DONE";
+        // document.getElementById('debug-lat').innerText = "Avg Lat: " + finalLat;
+        // document.getElementById('debug-lon').innerText = "Avg Lon: " + finalLon;
+        // document.getElementById('debug-label').style.color = "green";
+        // document.getElementById('debug-lat').style.color = "green";
+        // document.getElementById('debug-lon').style.color = "green";
 
-        console.log(`FINAL\nAvg Lat: ${finalLat}\nAvg Lon: ${finalLon}`)
-        locationConfirmed = true
-        //after location is confirmed, start camera
-        if(locationConfirmed){
-            document.getElementById("activate-btn-container").style.display = "none";
-            startCamera();
-        }
-    }
+    //     console.log(`FINAL\nAvg Lat: ${finalLat}\nAvg Lon: ${finalLon}`)
+    //     locationConfirmed = true
+    //     //after location is confirmed, start camera
+    //     if(locationConfirmed){
+    //         document.getElementById("activate-btn-container").style.display = "none";
+    //         startCamera();
+    //     }
+    // }
+    // timesTried++;
+
+    //constant geo getting stuff
+    document.getElementById('debug-label').innerText = "DEBUG (attempt " + timesTried + ")";
+    document.getElementById('debug-lat').innerText = "Lat: " + crd.latitude;
+    document.getElementById('debug-lon').innerText = "Lon: " + crd.longitude;
+    console.log(`ATTEMPT : ${timesTried}`);
+    console.log('Your current position is:');
+    console.log(`Latitude : ${crd.latitude}`);
+    console.log(`Longitude: ${crd.longitude}`);
+
+    //add to arrays
+    longitudeArr.push(crd.longitude);
+    latitudeArr.push(crd.latitude);
+
     timesTried++;
 }
 
@@ -225,25 +250,57 @@ cameraButton.addEventListener("click", function() {
     cameraOutput.src = cameraCanvas.toDataURL("image/png");
     cameraOutput.classList.add("taken");
 
+    //geolocation stuff
+    navigator.geolocation.clearWatch(id);
+    console.log("geo stopped");
+
+    //calculating avgs
+    let finalLat = 0.0; let finalLon = 0.0;
+
+    latitudeArr.forEach(element => {
+        tempLat1 += element;
+    });
+
+    longitudeArr.forEach(element => {
+        tempLon1 += element;
+    });
+
+    finalLat = tempLat1 / latitudeArr.length;
+    console.log(`${tempLat1} \\ ${latitudeArr.length} = ${finalLat}`);
+    finalLon = tempLon1 / longitudeArr.length;
+    console.log(`${tempLon1} \\ ${longitudeArr.length} = ${finalLon}`);
+
+    //for coordinate display?
+    lastStoredLat = latitudeArr[latitudeArr.length-1];
+    lastStoredLon = longitudeArr[longitudeArr.length-1];
+
+    document.getElementById('debug-label').innerText = "DEBUG (attempt " + timesTried + ") DONE";
+    document.getElementById('debug-lat').innerText = "Avg Lat: " + finalLat + "\nLast Stored Lat: " + lastStoredLat;
+    document.getElementById('debug-lon').innerText = "Avg Lon: " + finalLon + "\nLast Stored Lon: " + lastStoredLon;
+    document.getElementById('debug-label').style.color = "green";
+    document.getElementById('debug-lat').style.color = "green";
+    document.getElementById('debug-lon').style.color = "green";
+
+
     //hide anything camera related to show the preview / option buttons
     cameraContainer.style.display = "none";
     document.getElementById("btn-container").style.display = "block";
 });
 
-retakeButton.addEventListener("click", function() {
-    cameraContainer.style.display = "block";
-    cameraOutput.src = "//:0";
-    cameraOutput.classList.remove("taken");
-    document.getElementById("btn-container").style.display = "none";
-    // cameraCanvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
-});
+// retakeButton.addEventListener("click", function() {
+//     cameraContainer.style.display = "block";
+//     cameraOutput.src = "//:0";
+//     cameraOutput.classList.remove("taken");
+//     document.getElementById("btn-container").style.display = "none";
+//     // cameraCanvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
+// });
 
-saveButton.addEventListener("click", function() {
-    let imgPath = cameraOutput.getAttribute("src");
-    let fileName = getFileName();
-    //from FileSaver
-    saveAs(imgPath, fileName);
-});
+// saveButton.addEventListener("click", function() {
+//     let imgPath = cameraOutput.getAttribute("src");
+//     let fileName = getFileName();
+//     //from FileSaver
+//     saveAs(imgPath, fileName);
+// });
 
 // Start the app when the window loads
-startButton.addEventListener("click", startGeolocation); 
+startButton.addEventListener("click", startCamera); 
