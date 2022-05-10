@@ -1,7 +1,7 @@
 // face back camera by default
 const constraints = { video: { facingMode: "environment" }, audio: false };
 
-const cameraContainer = document.getElementById("full-cam-container");
+const cameraContainer = document.querySelector("#full-cam-container");
 const cameraView = document.querySelector("#camera-view");
 const cameraOutput = document.querySelector("#pic-output");
 const cameraCanvas = document.querySelector("#camera-canvas");
@@ -11,9 +11,12 @@ const startButton = document.querySelector("#activate-btn");
 const retakeButton = document.querySelector("#retake-btn");
 const saveButton = document.querySelector("#upload-btn");
 
+const coordinateDisplay = document.querySelector("#coord-num");
+const readyText = document.querySelector("ready-text");
+
 //const variables
 const aspectRatioConst = 1.5;
-const numLocationTries = 3;
+// const numLocationTries = 3;
 
 //for geolocation
 var timesTried = 0;
@@ -27,6 +30,24 @@ var lastStoredLon = 0.0;
 var lastStoredLat = 0.0;
 
 function startGeolocation() {
+    //reset each time app is started
+    timesTried = 0;
+    cumLat = 0;
+    cumLon = 0;
+    printedOnceGeoCheck = false;
+    printedOnceSecureCheck = false;
+    // locationConfirmed = false;
+    longitudeArr = [];
+    latitudeArr = [];
+    lastStoredLon = 0.0;
+    lastStoredLat = 0.0;
+    document.getElementById('debug-label').style.color = "black";
+    document.getElementById('debug-lat').style.color = "black";
+    document.getElementById('debug-lon').style.color = "black";
+    coordinateDisplay.style.color = "black";
+    readyText.innerText = "NOT READY TO CAPTURE";
+    readyText.style.color = "black";
+
     if(!navigator.geolocation){
         console.log("navigator.geolocation is not supported.");
         window.alert("navigator.geolocation is not supported.");
@@ -37,22 +58,6 @@ function startGeolocation() {
     
 // Access the device camera and stream to canvas
 function startCamera() {
-    //reset each time app is started/restarted
-    timesTried = 0;
-    cumLat = 0;
-    cumLon = 0;
-    printedOnceGeoCheck = false;
-    printedOnceSecureCheck = false;
-    locationConfirmed = false;
-    longitudeArr = [];
-    latitudeArr = [];
-    lastStoredLon = 0.0;
-    lastStoredLat = 0.0;
-    document.getElementById('debug-label').style.color = "black";
-    document.getElementById('debug-lat').style.color = "black";
-    document.getElementById('debug-lon').style.color = "black";
-    
-    
     //get screen size on start
     var windowWidth = window.innerWidth;
     var windowHeight = window.innerHeight;
@@ -100,6 +105,12 @@ function startCamera() {
 
     //show camera
     cameraContainer.style.display = "block";
+    readyText.style.display = "block";
+    coordinateDisplay.style.display = "block";
+    //disable button until reached 10 readings
+    cameraButton.disabled = true;
+    cameraButton.style.opacity = 0.5;
+
     startGeolocation()
 }
 
@@ -203,10 +214,28 @@ function geoSuccess(pos) {
     console.log(`Longitude: ${crd.longitude}`);
 
     //add to arrays
-    longitudeArr.push(crd.longitude);
-    latitudeArr.push(crd.latitude);
+    if(longitudeArr.length = 9){
+        longitudeArr.splice(0, 1); //remove first item
+        longitudeArr.push(crd.longitude); //add newest item
+        //activate button
+        cameraButton.disabled = true;
+        cameraButton.style.opacity = 1.0;
+        coordinateDisplay.style.color = "lightgreen";
+        readyText.innerText = "READY TO CAPTURE";
+        readyText.style.color = "lightgreen";
+    } else{
+        longitudeArr.push(crd.longitude);
+    }
+    
+    if(latitudeArr.length = 9){
+        latitudeArr.splice(0, 1); //remove first item
+        latitudeArr.push(crd.latitude); //add newest item
+    } else{
+        latitudeArr.push(crd.latitude);
+    }
 
     timesTried++;
+    coordinateDisplay.innerText = timesTried + "/10 readings";
 }
 
 function geoError(err) {
@@ -277,6 +306,9 @@ cameraButton.addEventListener("click", function() {
     //for coordinate display?
     lastStoredLat = latitudeArr[latitudeArr.length-1];
     lastStoredLon = longitudeArr[longitudeArr.length-1];
+
+    console.log("Lat vals: " + latitudeArr);
+    console.log("Lon vals: " + longitudeArr);
 
     document.getElementById('debug-label').innerText = "DEBUG (attempt " + timesTried + ") DONE";
     document.getElementById('debug-lat').innerText = "Avg Lat: " + finalLat + "\nLast Stored Lat: " + lastStoredLat;

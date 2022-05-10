@@ -170,8 +170,6 @@ p{
 } */
 
 #debug-lat, #debug-lon, #debug-label{
-    display: block;
-    position:sticky;
     z-index: 999;
     color: black;
     font-size: 14pt;
@@ -182,4 +180,12 @@ p{
     display: none;
     color: black;
     text-align: center;
+}
+
+#coord-num, #ready-text {
+    margin: 0 auto;
+    text-align: center;
+    color: red;
+    z-index: 999;
+    display: none;
 }
