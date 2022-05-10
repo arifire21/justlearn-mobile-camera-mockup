@@ -27,18 +27,6 @@ var lastStoredLon = 0.0;
 var lastStoredLat = 0.0;
 
 function startGeolocation() {
-    //reset each time app is started
-    timesTried = 0;
-    cumLat = 0;
-    cumLon = 0;
-    printedOnceGeoCheck = false;
-    printedOnceSecureCheck = false;
-    locationConfirmed = false;
-    longitudeArr = [];
-    latitudeArr = [];
-    lastStoredLon = 0.0;
-    lastStoredLat = 0.0;
-
     if(!navigator.geolocation){
         console.log("navigator.geolocation is not supported.");
         window.alert("navigator.geolocation is not supported.");
@@ -49,6 +37,22 @@ function startGeolocation() {
     
 // Access the device camera and stream to canvas
 function startCamera() {
+    //reset each time app is started/restarted
+    timesTried = 0;
+    cumLat = 0;
+    cumLon = 0;
+    printedOnceGeoCheck = false;
+    printedOnceSecureCheck = false;
+    locationConfirmed = false;
+    longitudeArr = [];
+    latitudeArr = [];
+    lastStoredLon = 0.0;
+    lastStoredLat = 0.0;
+    document.getElementById('debug-label').style.color = "black";
+    document.getElementById('debug-lat').style.color = "black";
+    document.getElementById('debug-lon').style.color = "black";
+    
+    
     //get screen size on start
     var windowWidth = window.innerWidth;
     var windowHeight = window.innerHeight;
