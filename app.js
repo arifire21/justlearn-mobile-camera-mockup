@@ -12,7 +12,7 @@ const retakeButton = document.querySelector("#retake-btn");
 const saveButton = document.querySelector("#upload-btn");
 
 const coordinateDisplay = document.querySelector("#coord-num");
-const readyText = document.querySelector("ready-text");
+const readyText = document.querySelector("#ready-text");
 
 //const variables
 const aspectRatioConst = 1.5;
