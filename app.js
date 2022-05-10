@@ -109,7 +109,7 @@ function startCamera() {
     coordinateDisplay.style.display = "block";
     //disable button until reached 10 readings
     cameraButton.disabled = true;
-    cameraButton.style.opacity = 0.5;
+    cameraButton.style.opacity = "0.5";
 
     startGeolocation()
 }
@@ -219,7 +219,7 @@ function geoSuccess(pos) {
         longitudeArr.push(crd.longitude); //add newest item
         //activate button
         cameraButton.disabled = true;
-        cameraButton.style.opacity = 1.0;
+        cameraButton.style.opacity = "1.0";
         coordinateDisplay.style.color = "lightgreen";
         readyText.innerText = "READY TO CAPTURE";
         readyText.style.color = "lightgreen";
