@@ -124,8 +124,8 @@ function startCamera() {
 //geolocation methods
 var geoOptions = {
     enableHighAccuracy: true,
-    timeout: 1500,
-    maximumAge: 2000
+    timeout: 2900,
+    maximumAge: 3000
 };
 
 // var tempLat1 = 0.0;
