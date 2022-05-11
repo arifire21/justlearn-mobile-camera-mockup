@@ -21,13 +21,15 @@ const aspectRatioConst = 1.5;
 //for geolocation
 var timesTried = 0;
 var id; //for the registered handler, to unregister when done
-let cumLat = 0;
-let cumLon = 0;
+// let cumLat = 0;
+// let cumLon = 0;
 // let locationConfirmed = false;
 var longitudeArr = [];
 var latitudeArr = [];
 var lastStoredLon = 0.0;
 var lastStoredLat = 0.0;
+var tempLat1 = 0.0;
+var tempLon1 = 0.0;
 
 function startGeolocation() {
     if(!navigator.geolocation){
@@ -45,8 +47,8 @@ function startCamera() {
 
     //reset each time app is started
     timesTried = 0;
-    cumLat = 0;
-    cumLon = 0;
+//     cumLat = 0;
+//     cumLon = 0;
     printedOnceGeoCheck = false;
     printedOnceSecureCheck = false;
     // locationConfirmed = false;
@@ -54,6 +56,8 @@ function startCamera() {
     latitudeArr = [];
     lastStoredLon = 0.0;
     lastStoredLat = 0.0;
+    tempLat1 = 0.0;
+    tempLon1 = 0.0;
     document.getElementById('debug-label').style.color = "black";
     document.getElementById('debug-lat').style.color = "black";
     document.getElementById('debug-lon').style.color = "black";
@@ -124,8 +128,8 @@ var geoOptions = {
     maximumAge: 1000
 };
 
-var tempLat1 = 0.0;
-var tempLon1 = 0.0;
+// var tempLat1 = 0.0;
+// var tempLon1 = 0.0;
 // var tempLat2 = 0;
 // var tempLon2 = 0;
 // var LatStr = "";
