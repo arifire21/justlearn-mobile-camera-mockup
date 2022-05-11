@@ -58,9 +58,9 @@ function startCamera() {
     lastStoredLat = 0.0;
     tempLat1 = 0.0;
     tempLon1 = 0.0;
-    document.getElementById('debug-label').style.color = "black";
-    document.getElementById('debug-lat').style.color = "black";
-    document.getElementById('debug-lon').style.color = "black";
+    // document.getElementById('debug-label').style.color = "black";
+    // document.getElementById('debug-lat').style.color = "black";
+    // document.getElementById('debug-lon').style.color = "black";
     coordinateDisplay.style.color = "red";
     readyText.innerText = "NOT READY TO CAPTURE";
     readyText.style.color = "red";
@@ -212,9 +212,9 @@ function geoSuccess(pos) {
     // timesTried++;
 
     //constant geo getting stuff
-    document.getElementById('debug-label').innerText = "DEBUG (attempt " + timesTried + ")";
-    document.getElementById('debug-lat').innerText = "Lat: " + crd.latitude;
-    document.getElementById('debug-lon').innerText = "Lon: " + crd.longitude;
+    // document.getElementById('debug-label').innerText = "DEBUG (attempt " + timesTried + ")";
+    // document.getElementById('debug-lat').innerText = "Lat: " + crd.latitude;
+    // document.getElementById('debug-lon').innerText = "Lon: " + crd.longitude;
     console.log(`ATTEMPT : ${timesTried}`);
     console.log('Your current position is:');
     console.log(`Latitude : ${crd.latitude}`);
@@ -322,12 +322,12 @@ cameraButton.addEventListener("click", function() {
     console.log("Lat vals: " + latitudeArr);
     console.log("Lon vals: " + longitudeArr);
 
-    document.getElementById('debug-label').innerText = "DEBUG (attempt " + timesTried + ") DONE";
-    document.getElementById('debug-lat').innerText = "Avg Lat: " + finalLat + "\nLast Stored Lat: " + lastStoredLat;
-    document.getElementById('debug-lon').innerText = "Avg Lon: " + finalLon + "\nLast Stored Lon: " + lastStoredLon;
-    document.getElementById('debug-label').style.color = "green";
-    document.getElementById('debug-lat').style.color = "green";
-    document.getElementById('debug-lon').style.color = "green";
+    // document.getElementById('debug-label').innerText = "DEBUG (attempt " + timesTried + ") DONE";
+    // document.getElementById('debug-lat').innerText = "Avg Lat: " + finalLat + "\nLast Stored Lat: " + lastStoredLat;
+    // document.getElementById('debug-lon').innerText = "Avg Lon: " + finalLon + "\nLast Stored Lon: " + lastStoredLon;
+    // document.getElementById('debug-label').style.color = "green";
+    // document.getElementById('debug-lat').style.color = "green";
+    // document.getElementById('debug-lon').style.color = "green";
 
 
     //hide anything camera related to show the preview / option buttons
