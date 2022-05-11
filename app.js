@@ -220,12 +220,6 @@ function geoSuccess(pos) {
     if(longitudeArr.length == 10){
         longitudeArr.splice(0, 1); //remove first item
         longitudeArr.push(crd.longitude); //add newest item
-        //activate button
-        cameraButton.disabled = false;
-        cameraButton.style.opacity = "1.0";
-        coordinateDisplay.style.color = "lightgreen";
-        readyText.innerText = "READY TO CAPTURE";
-        readyText.style.color = "lightgreen";
     } else{
         longitudeArr.push(crd.longitude);
     }
@@ -237,9 +231,19 @@ function geoSuccess(pos) {
         latitudeArr.push(crd.latitude);
     }
 
-    //NOTE: let timesTried increment first bc the user will probably not know attemt 0 is really the 1st one
+    //NOTE: let timesTried increment first bc the user will probably not know attempt 0 is really the 1st one
     timesTried++;
     coordinateDisplay.innerText = timesTried + "/10 readings";
+    
+    //at end of loop bc of how this is incrememnted
+    if(timesTried == 9){ //0-9
+        //activate button
+        cameraButton.disabled = false;
+        cameraButton.style.opacity = "1.0";
+        coordinateDisplay.style.color = "lightgreen";
+        readyText.innerText = "READY TO CAPTURE";
+        readyText.style.color = "lightgreen";
+    }
 }
 
 function geoError(err) {
