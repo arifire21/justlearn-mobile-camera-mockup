@@ -217,7 +217,7 @@ function geoSuccess(pos) {
     console.log(`Longitude: ${crd.longitude}`);
 
     //add to arrays
-    if(longitudeArr.length == 9){
+    if(longitudeArr.length == 10){
         longitudeArr.splice(0, 1); //remove first item
         longitudeArr.push(crd.longitude); //add newest item
         //activate button
@@ -230,7 +230,7 @@ function geoSuccess(pos) {
         longitudeArr.push(crd.longitude);
     }
     
-    if(latitudeArr.length == 9){
+    if(latitudeArr.length == 10){
         latitudeArr.splice(0, 1); //remove first item
         latitudeArr.push(crd.latitude); //add newest item
     } else{
