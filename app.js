@@ -124,8 +124,8 @@ function startCamera() {
 //geolocation methods
 var geoOptions = {
     enableHighAccuracy: true,
-    timeout: 800,
-    maximumAge: 1000
+    timeout: 1500,
+    maximumAge: 2000
 };
 
 // var tempLat1 = 0.0;
@@ -240,7 +240,7 @@ function geoSuccess(pos) {
     coordinateDisplay.innerText = timesTried + "/10 readings";
     
     //at end of loop bc of how this is incrememnted
-    if(timesTried == 9){ //0-9
+    if(timesTried == 10){ //0-9 = 10 readings
         //activate button
         cameraButton.disabled = false;
         cameraButton.style.opacity = "1.0";
