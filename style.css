@@ -170,9 +170,11 @@ p{
 } */
 
 #debug-lat, #debug-lon, #debug-label{
+    position: relative;
     z-index: 999;
     color: black;
     font-size: 14pt;
+    display: inline;
 }
 
 #err-instructions {
@@ -183,6 +185,7 @@ p{
 }
 
 #coord-num, #ready-text {
+    position: relative;
     margin: 0 auto;
     text-align: center;
     color: red;

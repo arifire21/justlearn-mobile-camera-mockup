@@ -30,6 +30,19 @@ var lastStoredLon = 0.0;
 var lastStoredLat = 0.0;
 
 function startGeolocation() {
+    if(!navigator.geolocation){
+        console.log("navigator.geolocation is not supported.");
+        window.alert("navigator.geolocation is not supported.");
+    } else {
+        id = navigator.geolocation.watchPosition(geoSuccess, geoError, geoOptions);
+    }
+}
+    
+// Access the device camera and stream to canvas
+function startCamera() {
+    //remove start button
+    document.getElementById("activate-btn-container").style.display = "none";
+
     //reset each time app is started
     timesTried = 0;
     cumLat = 0;
@@ -44,20 +57,10 @@ function startGeolocation() {
     document.getElementById('debug-label').style.color = "black";
     document.getElementById('debug-lat').style.color = "black";
     document.getElementById('debug-lon').style.color = "black";
-    coordinateDisplay.style.color = "black";
+    coordinateDisplay.style.color = "red";
     readyText.innerText = "NOT READY TO CAPTURE";
-    readyText.style.color = "black";
+    readyText.style.color = "red";
 
-    if(!navigator.geolocation){
-        console.log("navigator.geolocation is not supported.");
-        window.alert("navigator.geolocation is not supported.");
-    } else {
-        id = navigator.geolocation.watchPosition(geoSuccess, geoError, geoOptions);
-    }
-}
-    
-// Access the device camera and stream to canvas
-function startCamera() {
     //get screen size on start
     var windowWidth = window.innerWidth;
     var windowHeight = window.innerHeight;
@@ -214,11 +217,11 @@ function geoSuccess(pos) {
     console.log(`Longitude: ${crd.longitude}`);
 
     //add to arrays
-    if(longitudeArr.length = 9){
+    if(longitudeArr.length == 9){
         longitudeArr.splice(0, 1); //remove first item
         longitudeArr.push(crd.longitude); //add newest item
         //activate button
-        cameraButton.disabled = true;
+        cameraButton.disabled = false;
         cameraButton.style.opacity = "1.0";
         coordinateDisplay.style.color = "lightgreen";
         readyText.innerText = "READY TO CAPTURE";
@@ -227,13 +230,14 @@ function geoSuccess(pos) {
         longitudeArr.push(crd.longitude);
     }
     
-    if(latitudeArr.length = 9){
+    if(latitudeArr.length == 9){
         latitudeArr.splice(0, 1); //remove first item
         latitudeArr.push(crd.latitude); //add newest item
     } else{
         latitudeArr.push(crd.latitude);
     }
 
+    //NOTE: let timesTried increment first bc the user will probably not know attemt 0 is really the 1st one
     timesTried++;
     coordinateDisplay.innerText = timesTried + "/10 readings";
 }
@@ -320,7 +324,10 @@ cameraButton.addEventListener("click", function() {
 
     //hide anything camera related to show the preview / option buttons
     cameraContainer.style.display = "none";
+    readyText.style.display = "none";
+    coordinateDisplay.style.display = "none";
     document.getElementById("btn-container").style.display = "block";
+    document.getElementById("activate-btn-container").style.display = "block";
 });
 
 // retakeButton.addEventListener("click", function() {
