@@ -43,7 +43,7 @@ p{
     z-index: 1;
 }
 
-/* removed bc current implementation flips this?? */
+/* removed bc current mdn implementation flips this?? */
 /* #camera-view, #camera-canvas, #pic-output{
     transform: scaleX(-1);
     filter: FlipH;
@@ -83,7 +83,8 @@ p{
     z-index: 6;
 }
 
-#img-overlay {
+/* not used */
+/* #img-overlay {
     opacity: 0.5;
     height: 400px;
     width: 400px;
@@ -91,7 +92,7 @@ p{
     justify-content: center;
     align-items: center;
     z-index: 2;
-}
+} */
 
 #img-prompt {
     z-index: 2;
@@ -191,4 +192,9 @@ p{
     color: red;
     z-index: 999;
     display: none;
+}
+
+#btn-wireframe-container {
+    display: flex;
+    justify-content: center;
 }
