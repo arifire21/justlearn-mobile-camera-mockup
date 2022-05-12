@@ -16,14 +16,10 @@ const readyText = document.querySelector("#ready-text");
 
 //const variables
 const aspectRatioConst = 1.5;
-// const numLocationTries = 3;
 
-//for geolocation
+//variables for geolocation
 var timesTried = 0;
 var id; //for the registered handler, to unregister when done
-// let cumLat = 0;
-// let cumLon = 0;
-// let locationConfirmed = false;
 var longitudeArr = [];
 var latitudeArr = [];
 var lastStoredLon = 0.0;
@@ -47,11 +43,8 @@ function startCamera() {
 
     //reset each time app is started
     timesTried = 0;
-//     cumLat = 0;
-//     cumLon = 0;
     printedOnceGeoCheck = false;
     printedOnceSecureCheck = false;
-    // locationConfirmed = false;
     longitudeArr = [];
     latitudeArr = [];
     lastStoredLon = 0.0;
@@ -128,90 +121,10 @@ var geoOptions = {
     maximumAge: 5000
 };
 
-// var tempLat1 = 0.0;
-// var tempLon1 = 0.0;
-// var tempLat2 = 0;
-// var tempLon2 = 0;
-// var LatStr = "";
-// var LonStr = "";
-// var firstValLat = 0;
-// var firstValLon = 0;
 function geoSuccess(pos) {
     var crd = pos.coords;
 
-    // document.getElementById('debug-label').innerText = "DEBUG (attempt " + timesTried + ")";
-    // document.getElementById('debug-lat').innerText = "Lat: " + crd.latitude;
-    // document.getElementById('debug-lon').innerText = "Lon: " + crd.longitude;
-
-    // console.log('Your current position is:');
-    // console.log(`Latitude : ${crd.latitude}`);
-    // console.log(`Longitude: ${crd.longitude}`);
-
-    // cumLat += crd.latitude;
-    // cumLon += crd.longitude;
-    // console.log(`Temp Lat: ${cumLat}\nTemp Lon: ${cumLon}`)
-
-    //for precheck
-    // if (timesTried <= numLocationTries-1) {
-    //     // //temp thing -- check 1st and 2nd numbers to see if the whole number has changed
-    //     // if(timesTried == 0){
-    //     //     tempLat1 = crd.latitude;
-    //     //     tempLon1 = crd.longitude;
-    //     // }
-            
-    //     // if(timesTried == 1){
-    //     //     tempLat2 = crd.latitude;
-    //     //     tempLon2 = crd.longitude;
-    //     // }
-    //     document.getElementById('debug-label').innerText = "DEBUG (attempt " + timesTried + ")";
-    //     document.getElementById('debug-lat').innerText = "Lat: " + crd.latitude;
-    //     document.getElementById('debug-lon').innerText = "Lon: " + crd.longitude;
-    
-    //     console.log(`ATTEMPT: ${timesTried}\nYour current position is:\nLatitude : ${crd.latitude}\nLongitude: ${crd.longitude}`);
-
-    //     LatStr = String(crd.latitude);
-    //     LonStr = String(crd.longitude);
-    //     firstValLat = parseFloat(LatStr.split('.')[0]);
-    //     firstValLon = parseFloat(LonStr.split('.')[0]);
-    //     console.log(`Temp Lat (whole num): ${firstValLat}\nTemp Lon (whole num): ${firstValLon}`)
-
-    //     cumLat += parseFloat(LatStr.split('.')[1]);
-    //     cumLon += parseFloat(LonStr.split('.')[1]);;
-    //     console.log(`Temp Lat (decimal): ${cumLat}\nTemp Lon (decimal): ${cumLon}`)
-    // }
-
-    // if(timesTried == numLocationTries){
-    //     navigator.geolocation.clearWatch(id);
-    //     console.log("geo stopped");
-    //     let divLat = cumLat / numLocationTries;
-    //     let divLon = cumLon / numLocationTries;
-    //     //debug bullshit, turn everything back into strings
-    //     firstValLat = String(firstValLat); divLat =  String(divLat); firstValLon = String(firstValLon); divLon = String(divLon);
-    //     let debugStringLat = firstValLat.concat(".", divLat);
-    //     let debugStringLon = firstValLon.concat(".", divLon);
-    //     let finalLat = parseFloat(debugStringLat);
-    //     let finalLon = parseFloat(debugStringLon);
-    //     // let finalLat = firstValLat + divLat;
-    //     // let finalLon = firstValLon + divLon;
-
-        // document.getElementById('debug-label').innerText = "DEBUG (attempt " + timesTried + ") DONE";
-        // document.getElementById('debug-lat').innerText = "Avg Lat: " + finalLat;
-        // document.getElementById('debug-lon').innerText = "Avg Lon: " + finalLon;
-        // document.getElementById('debug-label').style.color = "green";
-        // document.getElementById('debug-lat').style.color = "green";
-        // document.getElementById('debug-lon').style.color = "green";
-
-    //     console.log(`FINAL\nAvg Lat: ${finalLat}\nAvg Lon: ${finalLon}`)
-    //     locationConfirmed = true
-    //     //after location is confirmed, start camera
-    //     if(locationConfirmed){
-    //         document.getElementById("activate-btn-container").style.display = "none";
-    //         startCamera();
-    //     }
-    // }
-    // timesTried++;
-
-    //constant geo getting stuff
+    //get geolocation constantly
     // document.getElementById('debug-label').innerText = "DEBUG (attempt " + timesTried + ")";
     // document.getElementById('debug-lat').innerText = "Lat: " + crd.latitude;
     // document.getElementById('debug-lon').innerText = "Lon: " + crd.longitude;
@@ -222,14 +135,14 @@ function geoSuccess(pos) {
 
     //add to arrays
     if(longitudeArr.length == 10){
-        longitudeArr.splice(0, 1); //remove first item
+        longitudeArr.splice(0, 1); //remove first (oldest) item
         longitudeArr.push(crd.longitude); //add newest item
     } else{
         longitudeArr.push(crd.longitude);
     }
     
     if(latitudeArr.length == 10){
-        latitudeArr.splice(0, 1); //remove first item
+        latitudeArr.splice(0, 1); //remove first (oldest) item
         latitudeArr.push(crd.latitude); //add newest item
     } else{
         latitudeArr.push(crd.latitude);
@@ -264,7 +177,7 @@ function geoError(err) {
         window.alert("Geolocation is required.\nPlease follow the displayed instructions.");
         if(navigator.platform === "iPhone"){
             instructions.innerText = "If browsing with Safari:\nGo to Settings > Location Services > Safari Website, and set to \"ask next time\" or \"while using the app.\"\nGo to Settings > Safari > Settings For Websites > Location, and set to \"Ask.\"\nReload Safari and the webpage.\nSelect \"allow once\" when prompted."
-            // track.stop();
+            track.stop();
             document.getElementById("activate-btn-container").style.display = "none";
             instructions.style.display = "block";
             cameraContainer.style.display = "none";
@@ -272,7 +185,7 @@ function geoError(err) {
         }
         if(navigator.platform === "MacIntel"){
             instructions.innerText = "Go to Settings > Security and Privacy > Location Services, and enable access for your browser.\nReload the app and webpage."
-            // track.stop();
+            track.stop();
             document.getElementById("activate-btn-container").style.display = "none";
             instructions.style.display = "block";
             cameraContainer.style.display = "none";
