@@ -64,23 +64,18 @@ function startCamera() {
 
     //adjust sizes of everything #camera, #camera-view, #camera-canvas
     cameraContainer.style.width = windowWidth + "px";
-    // cameraContainer.style.height = windowHeight + "px";
     cameraContainer.style.height = (windowWidth * aspectRatioConst) + "px";
 
     cameraView.style.width = windowWidth + "px";
-    // cameraView.style.height = windowHeight + "px";
     cameraView.style.height = (windowWidth * aspectRatioConst) + "px";
 
     cameraCanvas.style.width = windowWidth + "px";
-    // cameraCanvas.style.height = windowHeight + "px";
     cameraCanvas.style.height = (windowWidth * aspectRatioConst) + "px";
 
     //also adjust size of prompt
-    document.getElementById("Layer_1").style.height = windowWidth + "px";
-    document.getElementById("Layer_1").style.height = windowHeight + "px";
+    document.getElementById("Layer_1").style.width = windowWidth + "px";
+    document.getElementById("Layer_1").style.height = (windowWidth * aspectRatioConst) + "px";
 
-    // cameraOutput.style.width = (windowWidth-100) + "px";
-    // cameraOutput.style.height = (windowHeight-100) + "px";
     cameraOutput.style.width = windowWidth + "px";
     cameraOutput.style.height = (windowWidth * aspectRatioConst) + "px";
 
