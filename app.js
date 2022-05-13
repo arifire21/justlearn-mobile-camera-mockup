@@ -242,7 +242,7 @@ cameraButton.addEventListener("click", function() {
     cameraContainer.style.display = "none";
     readyText.style.display = "none";
     coordinateDisplay.style.display = "none";
-    document.getElementById("btn-container").style.display = "block";
+    document.getElementById("result-container").style.display = "block";
     document.getElementById("activate-btn-container").style.display = "block";
 });
 
