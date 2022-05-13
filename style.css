@@ -16,6 +16,21 @@ p{
     display: none;
 }
 
+#btn-wireframe-container {
+    display: flex;
+    justify-content: center;
+}
+
+#btn-container {
+    display: none;
+    text-align: center;
+}
+
+#activate-btn-container {
+    display: flex;
+    justify-content: center;
+}
+
 #activate-btn {
     cursor: pointer;
     width: 150px;
@@ -27,27 +42,10 @@ p{
     padding: 15px 20px;
     text-align: center;
     box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
-    position: fixed;
+    position: static;
     top: 40px;
     /* margin: 0 50%; */
 }
-  
-#camera, #camera-view, #camera-canvas{
-    position: absolute;
-    left: 0;
-    top: 0;
-    /* height: 550px;
-    width: 320px; */
-    text-align: center;
-    object-fit: cover;
-    z-index: 1;
-}
-
-/* removed bc current mdn implementation flips this?? */
-/* #camera-view, #camera-canvas, #pic-output{
-    transform: scaleX(-1);
-    filter: FlipH;
-} */
 
 #camera-btn {
     cursor: pointer;
@@ -61,7 +59,7 @@ p{
     padding: 15px 20px;
     text-align: center;
     box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
-    position: fixed;
+    position: static;
     left: 45%;
     bottom: 40px;
     z-index: 4;
@@ -69,48 +67,6 @@ p{
 
 #camera-btn:hover, #activate-btn:hover {
     background-color: darkorange;
-}
-
-.taken{
-    /* height: 150px!important;
-    width: 150px!important; */
-    transition: all 0.5s ease-in;
-    border: solid 3px white;
-    border-radius: 10px;
-    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
-    /* top: 20px;
-    right: 20px; */
-    z-index: 6;
-}
-
-/* not used */
-/* #img-overlay {
-    opacity: 0.5;
-    height: 400px;
-    width: 400px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2;
-} */
-
-#img-prompt {
-    z-index: 2;
-    /* text-align: center !important;
-    width: auto;
-    /* position: fixed; */
-    /* bottom: 85; */
-    /*color: white; */
-}
-
-#btn-container {
-    display: none;
-    text-align: center;
-}
-
-#activate-btn-container {
-    display: flex;
-    justify-content: center;
 }
 
 #retake-btn, #upload-btn {
@@ -133,6 +89,56 @@ p{
 #retake-btn:hover, #upload-btn:hover {
     background-color: darkgreen;
 }
+  
+#camera, #camera-view, #camera-canvas{
+    position: absolute;
+    left: 0;
+    top: 0;
+    /* height: 550px;
+    width: 320px; */
+    text-align: center;
+    object-fit: cover;
+    z-index: 1;
+}
+
+/* removed bc current mdn implementation flips this?? */
+/* #camera-view, #camera-canvas, #pic-output{
+    transform: scaleX(-1);
+    filter: FlipH;
+} */
+
+
+.taken{
+    /* height: 150px!important;
+    width: 150px!important; */
+    transition: all 0.5s ease-in;
+    border: solid 3px white;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
+    /* top: 20px;
+    right: 20px; */
+    z-index: 6;
+}
+
+/* not used */
+/* #img-overlay {
+    opacity: 0.5;
+    height: 400px;
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+} 
+
+/* #img-prompt {
+    z-index: 2;
+    /* text-align: center !important;
+    width: auto;
+    /* position: fixed; */
+    /* bottom: 85; */
+    /*color: white;
+} */
 
 .center {
     display: block;
@@ -193,9 +199,4 @@ p{
     color: red;
     z-index: 999;
     display: none;
-}
-
-#btn-wireframe-container {
-    display: flex;
-    justify-content: center;
 }
