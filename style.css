@@ -11,7 +11,7 @@ p{
     width: fit-content;
 }
 
-  /* initial val */
+/* initial val, to be changed in js on permission start */
 #full-cam-container {
     display: none;
 }
@@ -103,13 +103,6 @@ p{
     z-index: 1;
 }
 
-/* removed bc current mdn implementation flips this?? */
-/* #camera-view, #camera-canvas, #pic-output{
-    transform: scaleX(-1);
-    filter: FlipH;
-} */
-
-
 .taken{
     /* height: 150px!important;
     width: 150px!important; */
@@ -169,15 +162,6 @@ p{
     border: none;
     /* color: white; */
   }
-
-/* @media (max-width:420px){
-
-    #camera, #camera-view, #camera-canvas{
-        height: 550px;
-        width: 320px;
-    }
-    
-} */
 
 #debug-lat, #debug-lon, #debug-label{
     position: relative;

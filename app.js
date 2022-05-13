@@ -1,6 +1,4 @@
-// face back camera by default
-const constraints = { video: { facingMode: "environment" }, audio: false };
-
+//JS ELEMENTS
 const cameraContainer = document.querySelector("#full-cam-container");
 const cameraView = document.querySelector("#camera-view");
 const cameraOutput = document.querySelector("#pic-output");
@@ -14,10 +12,23 @@ const saveButton = document.querySelector("#upload-btn");
 const coordinateDisplay = document.querySelector("#coord-num");
 const readyText = document.querySelector("#ready-text");
 
-//const variables
+//CONST VARIABLES
 const aspectRatioConst = 1.5;
+// face back camera by default
+const constraints = { video: { facingMode: "environment" }, audio: false };
 
-//variables for geolocation
+//VARIABLES FOR GEOLOCATION
+var geoOptions = {
+    enableHighAccuracy: true,
+    timeout: 4000,
+    maximumAge: 5000
+};
+
+var geoTarget = {
+    latitude : 0,
+    longitude: 0
+};
+
 var timesTried = 0;
 var id; //for the registered handler, to unregister when done
 var longitudeArr = [];
@@ -27,6 +38,9 @@ var lastStoredLat = 0.0;
 var tempLat1 = 0.0;
 var tempLon1 = 0.0;
 
+//------------------------------------------------------//
+
+//METHODS
 function startGeolocation() {
     if(!navigator.geolocation){
         console.log("navigator.geolocation is not supported.");
@@ -109,13 +123,6 @@ function startCamera() {
     startGeolocation()
 }
 
-//geolocation methods
-var geoOptions = {
-    enableHighAccuracy: true,
-    timeout: 4000,
-    maximumAge: 5000
-};
-
 function geoSuccess(pos) {
     var crd = pos.coords;
 
@@ -195,6 +202,9 @@ function getFileName() {
     return "tree-kind_" + Date.now();
 }
 
+//------------------------------------------------------//
+
+//EVENT LISTENERS
 // Take a picture when button is tapped
 cameraButton.addEventListener("click", function() {
     cameraCanvas.width = cameraView.videoWidth;
