@@ -7,10 +7,14 @@ const cameraButton = document.querySelector("#camera-btn");
 
 const startButton = document.querySelector("#activate-btn");
 const retakeButton = document.querySelector("#retake-btn");
-const saveButton = document.querySelector("#upload-btn");
+const doneButton = document.querySelector("#done-btn");
 
 const coordinateDisplay = document.querySelector("#coord-num");
 const readyText = document.querySelector("#ready-text");
+
+//temporary bc theres no other page
+doneButton.disabled=true;
+doneButton.style.opacity="0.5";
 
 //CONST VARIABLES
 const aspectRatioConst = 1.5;
@@ -40,6 +44,27 @@ var tempLon1 = 0.0;
 
 //------------------------------------------------------//
 
+function reset(){
+    timesTried = 0;
+    printedOnceGeoCheck = false;
+    printedOnceSecureCheck = false;
+    longitudeArr = [];
+    latitudeArr = [];
+    lastStoredLon = 0.0;
+    lastStoredLat = 0.0;
+    tempLat1 = 0.0;
+    tempLon1 = 0.0;
+    // document.getElementById('debug-label').style.color = "black";
+    // document.getElementById('debug-lat').style.color = "black";
+    // document.getElementById('debug-lon').style.color = "black";
+    coordinateDisplay.innerText = "X/10 readings";
+    coordinateDisplay.style.color = "red";
+    readyText.innerText = "NOT READY TO CAPTURE";
+    readyText.style.color = "red";
+    cameraButton.disabled = true;
+    cameraButton.style.opacity = "0.5";
+}
+
 //METHODS
 function startGeolocation() {
     if(!navigator.geolocation){
@@ -56,21 +81,7 @@ function startCamera() {
     document.getElementById("activate-btn-container").style.display = "none";
 
     //reset each time app is started
-    timesTried = 0;
-    printedOnceGeoCheck = false;
-    printedOnceSecureCheck = false;
-    longitudeArr = [];
-    latitudeArr = [];
-    lastStoredLon = 0.0;
-    lastStoredLat = 0.0;
-    tempLat1 = 0.0;
-    tempLon1 = 0.0;
-    // document.getElementById('debug-label').style.color = "black";
-    // document.getElementById('debug-lat').style.color = "black";
-    // document.getElementById('debug-lon').style.color = "black";
-    coordinateDisplay.style.color = "red";
-    readyText.innerText = "NOT READY TO CAPTURE";
-    readyText.style.color = "red";
+    reset();
 
     //get screen size on start
     var windowWidth = window.innerWidth;
@@ -250,21 +261,23 @@ cameraButton.addEventListener("click", function() {
 
     //hide anything camera related to show the preview / option buttons
     cameraContainer.style.display = "none";
-    readyText.style.display = "none";
-    coordinateDisplay.style.display = "none";
+    document.getElementById("reading-container").style.display = "none";
     document.getElementById("result-container").style.display = "block";
-    document.getElementById("activate-btn-container").style.display = "block";
 });
 
-// retakeButton.addEventListener("click", function() {
-//     cameraContainer.style.display = "block";
-//     cameraOutput.src = "//:0";
-//     cameraOutput.classList.remove("taken");
-//     document.getElementById("btn-container").style.display = "none";
-//     // cameraCanvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
-// });
+retakeButton.addEventListener("click", function() {
+    cameraOutput.src = "//:0";
+    cameraOutput.classList.remove("taken");
+    // cameraCanvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
+    reset();
+    cameraContainer.style.display = "block";
+    document.getElementById("result-container").style.display = "none";
+    document.getElementById("reading-container").style.display = "block";
+    startGeolocation();
+});
 
-// saveButton.addEventListener("click", function() {
+//do whatever to next window here
+// doneButton.addEventListener("click", function() {
 //     let imgPath = cameraOutput.getAttribute("src");
 //     let fileName = getFileName();
 //     //from FileSaver
