@@ -1,3 +1,12 @@
+/* Z-INDEXES */
+/* #coord-num, #ready-text (display for location readings): 999
+#camera, #camera-view, #camera-canvas: 1
+.center-wireframe: 2
+.camera-btn: 3
+.taken (actual picture): 4
+#err-instructions (show on location prompt error): 13 (why.)*/
+
+
 html, body{
     margin: 0;
     padding: 0;
@@ -63,7 +72,7 @@ p{
     position: absolute;
     left: 45%;
     bottom: 40px;
-    z-index: 4;
+    z-index: 3;
 }
 
 #camera-btn:hover, #activate-btn:hover {
@@ -113,28 +122,8 @@ p{
     box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
     /* top: 20px;
     right: 20px; */
-    z-index: 6;
+    z-index: 4;
 }
-
-/* not used */
-/* #img-overlay {
-    opacity: 0.5;
-    height: 400px;
-    width: 400px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2;
-} 
-
-/* #img-prompt {
-    z-index: 2;
-    /* text-align: center !important;
-    width: auto;
-    /* position: fixed; */
-    /* bottom: 85; */
-    /*color: white;
-} */
 
 .center {
     display: block;
@@ -143,23 +132,23 @@ p{
     /* width: 50%; */
   }
 
-  .center-wireframe {
+.center-wireframe {
     display: flex;
     margin: 0 auto;
     margin-bottom: 15%;
     position:sticky;
     z-index: 2;
     border: none;
-    /* color: white; */
-  }
+}
+ 
 
-#debug-lat, #debug-lon, #debug-label{
+/* #debug-lat, #debug-lon, #debug-label{
     position: relative;
     z-index: 999;
     color: black;
     font-size: 14pt;
     display: inline;
-}
+} */
 
 #err-instructions {
     z-index: 13;

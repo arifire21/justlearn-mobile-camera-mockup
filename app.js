@@ -17,7 +17,7 @@ doneButton.disabled=true;
 doneButton.style.opacity="0.5";
 
 //CONST VARIABLES
-const aspectRatioConst = 1.5;
+var aspectRatioConst = 1.5;
 // face back camera by default
 const constraints = { video: { facingMode: "environment" }, audio: false };
 
@@ -88,21 +88,47 @@ function startCamera() {
     var windowHeight = window.innerHeight;
 
     //adjust sizes of everything #camera, #camera-view, #camera-canvas
-    cameraContainer.style.width = windowWidth + "px";
-    cameraContainer.style.height = (windowWidth * aspectRatioConst) + "px";
+    //pseudo-media rule for ipads/tablets
+    //tablet -- 810
+    //default -- mobile
+    //desktop -- inner width and height
+    // if(windowWidth <= 810){
+    //     aspectRatioConst = 0.5
+    //     cameraContainer.style.width = windowWidth + "px";
+    //     cameraContainer.style.height = (windowWidth * aspectRatioConst) + "px";
+    
+    //     cameraView.style.width = windowWidth + "px";
+    //     cameraView.style.height = (windowWidth * aspectRatioConst) + "px";
+    
+    //     cameraCanvas.style.width = windowWidth + "px";
+    //     cameraCanvas.style.height = (windowWidth * aspectRatioConst) + "px";
+    
+    //     //also adjust size of prompt
+    //     document.getElementById("Layer_1").style.width = windowWidth + "px";
+    //     document.getElementById("Layer_1").style.height = windowHeight + "px";
+    
+    //     cameraOutput.style.width = windowWidth + "px";
+    //     cameraOutput.style.height = (windowWidth * aspectRatioConst) + "px";
+    // }
+    // else if(windowWidth)
+    // //"default" -- mobile screens
+    // else {
+        cameraContainer.style.width = windowWidth + "px";
+        cameraContainer.style.height = (windowWidth * aspectRatioConst) + "px";
 
-    cameraView.style.width = windowWidth + "px";
-    cameraView.style.height = (windowWidth * aspectRatioConst) + "px";
+        cameraView.style.width = windowWidth + "px";
+        cameraView.style.height = (windowWidth * aspectRatioConst) + "px";
 
-    cameraCanvas.style.width = windowWidth + "px";
-    cameraCanvas.style.height = (windowWidth * aspectRatioConst) + "px";
+        cameraCanvas.style.width = windowWidth + "px";
+        cameraCanvas.style.height = (windowWidth * aspectRatioConst) + "px";
 
-    //also adjust size of prompt
-    document.getElementById("Layer_1").style.width = windowWidth + "px";
-    document.getElementById("Layer_1").style.height = (windowWidth * aspectRatioConst) + "px";
+        //also adjust size of prompt
+        document.getElementById("a").style.width = windowWidth + "px";
+        document.getElementById("a").style.height = (windowWidth * aspectRatioConst) + "px";
 
-    cameraOutput.style.width = windowWidth + "px";
-    cameraOutput.style.height = (windowWidth * aspectRatioConst) + "px";
+        cameraOutput.style.width = windowWidth + "px";
+        cameraOutput.style.height = (windowWidth * aspectRatioConst) + "px";
+    // }
 
     //camera permissions and such
     if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
