@@ -124,7 +124,7 @@ function startCamera() {
 
         //also adjust size of prompt
         document.getElementById("a").style.width = windowWidth + "px";
-        document.getElementById("a").style.height = (windowWidth * aspectRatioConst) + "px";
+        document.getElementById("a").style.height = windowHeight + "px";
 
         cameraOutput.style.width = windowWidth + "px";
         cameraOutput.style.height = (windowWidth * aspectRatioConst) + "px";
