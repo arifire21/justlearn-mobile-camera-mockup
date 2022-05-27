@@ -1,6 +1,5 @@
 //JS ELEMENTS
 const cameraContainer = document.querySelector("#full-cam-container");
-const fullViewfinderContainer = document.querySelector("#full-viewfinder-container");
 const cameraView = document.querySelector("#camera-view");
 const cameraOutput = document.querySelector("#pic-output");
 const cameraCanvas = document.querySelector("#camera-canvas");
@@ -62,8 +61,8 @@ function reset(){
     coordinateDisplay.style.color = "red";
     readyText.innerText = "NOT READY TO CAPTURE";
     readyText.style.color = "red";
-    // cameraButton.disabled = true;
-    // cameraButton.style.opacity = "0.5";
+    cameraButton.disabled = true;
+    cameraButton.style.opacity = "0.5";
 }
 
 //METHODS
@@ -88,8 +87,6 @@ function startCamera() {
     var windowWidth = window.innerWidth;
     var windowHeight = window.innerHeight;
 
-    //CHANGED BECAUSE OF FULLVIEWPORTCONTAINER
-    
     //adjust sizes of everything #camera, #camera-view, #camera-canvas
     //pseudo-media rule for ipads/tablets
     //tablet -- 810
@@ -116,23 +113,19 @@ function startCamera() {
     // else if(windowWidth)
     // //"default" -- mobile screens
     // else {
-        // cameraContainer.style.width = windowWidth + "px";
-        // cameraContainer.style.height = (windowWidth * aspectRatioConst) + "px";
+        cameraContainer.style.width = windowWidth + "px";
+        cameraContainer.style.height = (windowWidth * aspectRatioConst) + "px";
 
-        // cameraView.style.width = windowWidth + "px";
-        // cameraView.style.height = (windowWidth * aspectRatioConst) + "px";
+        cameraView.style.width = windowWidth + "px";
+        cameraView.style.height = (windowWidth * aspectRatioConst) + "px";
 
-        // cameraCanvas.style.width = windowWidth + "px";
-        // cameraCanvas.style.height = (windowWidth * aspectRatioConst) + "px";
+        cameraCanvas.style.width = windowWidth + "px";
+        cameraCanvas.style.height = (windowWidth * aspectRatioConst) + "px";
 
         //also adjust size of prompt
-        // document.getElementById("a").style.width = windowWidth + "px";
-        // document.getElementById("a").style.height = windowHeight + "px";
-        //CHANGE TO FIT NEW CONTAINER SIZE
-        document.getElementById("a").style.width = fullViewfinderContainer.offsetWidth - 100 + "px";
-        document.getElementById("a").style.height = fullViewfinderContainer.offsetHeight - 100 + "px";
+        document.getElementById("a").style.width = windowWidth + "px";
+        document.getElementById("a").style.height = windowHeight + "px";
 
-        //KEEP OUTPUT THE SAME
         cameraOutput.style.width = windowWidth + "px";
         cameraOutput.style.height = (windowWidth * aspectRatioConst) + "px";
     // }
@@ -161,8 +154,8 @@ function startCamera() {
     readyText.style.display = "block";
     coordinateDisplay.style.display = "block";
     //disable button until reached 10 readings
-    // cameraButton.disabled = true;
-    // cameraButton.style.opacity = "0.5";
+    cameraButton.disabled = true;
+    cameraButton.style.opacity = "0.5";
 
     startGeolocation()
 }

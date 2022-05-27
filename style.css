@@ -23,18 +23,11 @@ p{
 /* initial val, to be changed in js on permission start */
 #full-cam-container {
     display: none;
-    width: 500;
-    height: 500;
-    border: 2px solid orange;
 }
 
 #btn-wireframe-container {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    /* position: relative; */
-    width: 400;
-    height: 400;
 }
 
 #result-container {
@@ -76,9 +69,9 @@ p{
     text-align: center;
     box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
     display: block;
-    position: relative;
-    left: 40%;
-    bottom: 0px;
+    position: absolute;
+    left: 45%;
+    bottom: 40px;
     z-index: 3;
 }
 
@@ -142,7 +135,7 @@ p{
 .center-wireframe {
     display: flex;
     margin: 0 auto;
-    /* margin-bottom: 15%; */
+    margin-bottom: 15%;
     position:sticky;
     z-index: 2;
     border: none;
@@ -171,9 +164,4 @@ p{
     color: red;
     z-index: 999;
     display: none;
-}
-
-#full-viewfinder-container {
-    width: 500px;
-    height: 500px;
 }
