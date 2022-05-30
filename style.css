@@ -12,13 +12,13 @@ html, body{
     padding: 0;
     height: 100%;
     width: 100%;
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
     font-family: "NexaBold";
   }
 
-p{
+/* p{
     width: fit-content;
-}
+} */
 
 /* initial val, to be changed in js on permission start */
 #full-cam-container {
@@ -113,32 +113,14 @@ p{
     position: absolute;
     left: 0;
     top: 0;
-    /* height: 550px;
-    width: 320px; */
     text-align: center;
     object-fit: cover;
     z-index: 1;
 }
 
 .taken{
-    /* height: 150px!important;
-    width: 150px!important; */
-    /* transition: all 0.5s ease-in;
-    border: solid 3px white;
-    border-radius: 10px;
-    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2); */
-    /* top: 20px;
-    right: 20px; */
     z-index: 4;
 }
-
-/* #debug-lat, #debug-lon, #debug-label{
-    position: relative;
-    z-index: 999;
-    color: black;
-    font-size: 14pt;
-    display: inline;
-} */
 
 #err-instructions {
     z-index: 13;
@@ -146,12 +128,3 @@ p{
     color: black;
     text-align: center;
 }
-
-/* #coord-num, #ready-text {
-    position: relative;
-    margin: 0 auto;
-    text-align: center;
-    color: red;
-    z-index: 999;
-    display: none;
-} */
