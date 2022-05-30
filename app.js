@@ -53,10 +53,14 @@ function startCamera() {
             cameraView.srcObject = stream;
         })
         .catch(function(error) {
-            //todo -- find a way to specifically look for NotAllowedError?
-            console.error("Camera error:", error);
-            cameraContainer.innerHTML = "Camera error - page reload required."
-            window.alert("Camera access is required. Please reload the page and allow camera access.");
+            if(error.name == "NotAllowedError"){
+                console.error("NotAllowedError:", error);
+                cameraContainer.innerHTML = "Camera error - page reload required."
+                window.alert("Camera access is required. Please reload the page and allow camera access.");
+            } else {
+               console.error("Camera error:", error);
+               cameraContainer.innerHTML = "Camera error - pleae check console."
+            }
         });
     }
 
