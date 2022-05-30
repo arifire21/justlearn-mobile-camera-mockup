@@ -26,8 +26,10 @@ p{
 }
 
 #btn-wireframe-container {
+    height: 90%;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 #result-container {
@@ -58,8 +60,7 @@ p{
 
 #camera-btn {
     cursor: pointer;
-    width: 100px;
-    /* margin-left: 20%; */
+    width: 120px;
     background-color: orange;
     color: white;
     font-size: 16px;
@@ -68,11 +69,17 @@ p{
     padding: 15px 20px;
     text-align: center;
     box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
-    display: block;
     position: absolute;
-    left: 45%;
-    bottom: 40px;
+    bottom: 30px;
     z-index: 3;
+}
+
+/* wireframe styling */
+#a {
+    width: 400px;
+    height: 500px;
+    margin: auto;
+    z-index: 2;
 }
 
 #camera-btn:hover, #activate-btn:hover {
@@ -116,31 +123,14 @@ p{
 .taken{
     /* height: 150px!important;
     width: 150px!important; */
-    transition: all 0.5s ease-in;
+    /* transition: all 0.5s ease-in;
     border: solid 3px white;
     border-radius: 10px;
-    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2); */
     /* top: 20px;
     right: 20px; */
     z-index: 4;
 }
-
-.center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    /* width: 50%; */
-  }
-
-.center-wireframe {
-    display: flex;
-    margin: 0 auto;
-    margin-bottom: 15%;
-    position:sticky;
-    z-index: 2;
-    border: none;
-}
- 
 
 /* #debug-lat, #debug-lon, #debug-label{
     position: relative;
@@ -157,11 +147,11 @@ p{
     text-align: center;
 }
 
-#coord-num, #ready-text {
+/* #coord-num, #ready-text {
     position: relative;
     margin: 0 auto;
     text-align: center;
     color: red;
     z-index: 999;
     display: none;
-}
+} */

@@ -9,15 +9,15 @@ const startButton = document.querySelector("#activate-btn");
 const retakeButton = document.querySelector("#retake-btn");
 const doneButton = document.querySelector("#done-btn");
 
-const coordinateDisplay = document.querySelector("#coord-num");
-const readyText = document.querySelector("#ready-text");
+// const coordinateDisplay = document.querySelector("#coord-num");
+// const readyText = document.querySelector("#ready-text");
 
 //temporary bc theres no other page
 doneButton.disabled=true;
 doneButton.style.opacity="0.5";
 
 //CONST VARIABLES
-var aspectRatioConst = 1.5;
+const aspectRatioConst = 1.5;
 // face back camera by default
 const constraints = { video: { facingMode: "environment" }, audio: false };
 
@@ -57,12 +57,12 @@ function reset(){
     // document.getElementById('debug-label').style.color = "black";
     // document.getElementById('debug-lat').style.color = "black";
     // document.getElementById('debug-lon').style.color = "black";
-    coordinateDisplay.innerText = "X/10 readings";
-    coordinateDisplay.style.color = "red";
-    readyText.innerText = "NOT READY TO CAPTURE";
-    readyText.style.color = "red";
-    cameraButton.disabled = true;
-    cameraButton.style.opacity = "0.5";
+    // coordinateDisplay.innerText = "X/10 readings";
+    // coordinateDisplay.style.color = "red";
+    // readyText.innerText = "NOT READY TO CAPTURE";
+    // readyText.style.color = "red";
+    // cameraButton.disabled = true;
+    // cameraButton.style.opacity = "0.5";
 }
 
 //METHODS
@@ -80,55 +80,23 @@ function startCamera() {
     //remove start button
     document.getElementById("activate-btn-container").style.display = "none";
 
-    //reset each time app is started
-    reset();
-
     //get screen size on start
     var windowWidth = window.innerWidth;
     var windowHeight = window.innerHeight;
 
-    //adjust sizes of everything #camera, #camera-view, #camera-canvas
-    //pseudo-media rule for ipads/tablets
-    //tablet -- 810
-    //default -- mobile
-    //desktop -- inner width and height
-    // if(windowWidth <= 810){
-    //     aspectRatioConst = 0.5
-    //     cameraContainer.style.width = windowWidth + "px";
-    //     cameraContainer.style.height = (windowWidth * aspectRatioConst) + "px";
-    
-    //     cameraView.style.width = windowWidth + "px";
-    //     cameraView.style.height = (windowWidth * aspectRatioConst) + "px";
-    
-    //     cameraCanvas.style.width = windowWidth + "px";
-    //     cameraCanvas.style.height = (windowWidth * aspectRatioConst) + "px";
-    
-    //     //also adjust size of prompt
-    //     document.getElementById("Layer_1").style.width = windowWidth + "px";
-    //     document.getElementById("Layer_1").style.height = windowHeight + "px";
-    
-    //     cameraOutput.style.width = windowWidth + "px";
-    //     cameraOutput.style.height = (windowWidth * aspectRatioConst) + "px";
-    // }
-    // else if(windowWidth)
-    // //"default" -- mobile screens
-    // else {
-        cameraContainer.style.width = windowWidth + "px";
-        cameraContainer.style.height = (windowWidth * aspectRatioConst) + "px";
+    cameraContainer.style.width = windowWidth + "px";
+    cameraContainer.style.height = windowHeight + "px";
 
-        cameraView.style.width = windowWidth + "px";
-        cameraView.style.height = (windowWidth * aspectRatioConst) + "px";
+    cameraView.style.width = windowWidth + "px";
+    cameraView.style.height = windowHeight + "px";
 
-        cameraCanvas.style.width = windowWidth + "px";
-        cameraCanvas.style.height = (windowWidth * aspectRatioConst) + "px";
+    cameraCanvas.style.width = windowWidth + "px";
+    cameraCanvas.style.height = windowHeight + "px";
 
-        //also adjust size of prompt
-        document.getElementById("a").style.width = windowWidth + "px";
-        document.getElementById("a").style.height = windowHeight + "px";
-
-        cameraOutput.style.width = windowWidth + "px";
-        cameraOutput.style.height = (windowWidth * aspectRatioConst) + "px";
-    // }
+    //WIREFRAME IS STYLED IN CSS
+    //KEEP OUTPUT THE SAME
+    cameraOutput.style.width = windowWidth + "px";
+    cameraOutput.style.height = (windowWidth * aspectRatioConst) + "px";
 
     //camera permissions and such
     if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
@@ -151,13 +119,13 @@ function startCamera() {
 
     //show camera
     cameraContainer.style.display = "block";
-    readyText.style.display = "block";
-    coordinateDisplay.style.display = "block";
-    //disable button until reached 10 readings
-    cameraButton.disabled = true;
-    cameraButton.style.opacity = "0.5";
+    // readyText.style.display = "block";
+    // coordinateDisplay.style.display = "block";
+    // //disable button until reached 10 readings
+    // cameraButton.disabled = true;
+    // cameraButton.style.opacity = "0.5";
 
-    startGeolocation()
+    // startGeolocation()
 }
 
 function geoSuccess(pos) {
@@ -194,11 +162,11 @@ function geoSuccess(pos) {
     //at end of loop bc of how this is incrememnted
     if(timesTried == 10){ //0-9 = 10 readings
         //activate button
-        cameraButton.disabled = false;
-        cameraButton.style.opacity = "1.0";
-        coordinateDisplay.style.color = "lightgreen";
-        readyText.innerText = "READY TO CAPTURE";
-        readyText.style.color = "lightgreen";
+        // cameraButton.disabled = false;
+        // cameraButton.style.opacity = "1.0";
+        // coordinateDisplay.style.color = "lightgreen";
+        // readyText.innerText = "READY TO CAPTURE";
+        // readyText.style.color = "lightgreen";
     }
 }
 
@@ -251,31 +219,31 @@ cameraButton.addEventListener("click", function() {
     cameraOutput.classList.add("taken");
 
     //geolocation stuff
-    navigator.geolocation.clearWatch(id);
-    console.log("geo stopped");
+    // navigator.geolocation.clearWatch(id);
+    // console.log("geo stopped");
 
-    //calculating avgs
-    let finalLat = 0.0; let finalLon = 0.0;
+    // //calculating avgs
+    // let finalLat = 0.0; let finalLon = 0.0;
 
-    latitudeArr.forEach(element => {
-        tempLat1 += element;
-    });
+    // latitudeArr.forEach(element => {
+    //     tempLat1 += element;
+    // });
 
-    longitudeArr.forEach(element => {
-        tempLon1 += element;
-    });
+    // longitudeArr.forEach(element => {
+    //     tempLon1 += element;
+    // });
 
-    finalLat = tempLat1 / latitudeArr.length;
-    console.log(`${tempLat1} \\ ${latitudeArr.length} = ${finalLat}`);
-    finalLon = tempLon1 / longitudeArr.length;
-    console.log(`${tempLon1} \\ ${longitudeArr.length} = ${finalLon}`);
+    // finalLat = tempLat1 / latitudeArr.length;
+    // console.log(`${tempLat1} \\ ${latitudeArr.length} = ${finalLat}`);
+    // finalLon = tempLon1 / longitudeArr.length;
+    // console.log(`${tempLon1} \\ ${longitudeArr.length} = ${finalLon}`);
 
-    //for coordinate display?
-    lastStoredLat = latitudeArr[latitudeArr.length-1];
-    lastStoredLon = longitudeArr[longitudeArr.length-1];
+    // //for coordinate display?
+    // lastStoredLat = latitudeArr[latitudeArr.length-1];
+    // lastStoredLon = longitudeArr[longitudeArr.length-1];
 
-    console.log("Lat vals: " + latitudeArr);
-    console.log("Lon vals: " + longitudeArr);
+    // console.log("Lat vals: " + latitudeArr);
+    // console.log("Lon vals: " + longitudeArr);
 
     // document.getElementById('debug-label').innerText = "DEBUG (attempt " + timesTried + ") DONE";
     // document.getElementById('debug-lat').innerText = "Avg Lat: " + finalLat + "\nLast Stored Lat: " + lastStoredLat;
@@ -287,7 +255,6 @@ cameraButton.addEventListener("click", function() {
 
     //hide anything camera related to show the preview / option buttons
     cameraContainer.style.display = "none";
-    document.getElementById("reading-container").style.display = "none";
     document.getElementById("result-container").style.display = "block";
 });
 
