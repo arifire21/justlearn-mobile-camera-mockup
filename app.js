@@ -17,7 +17,7 @@ doneButton.disabled=true;
 doneButton.style.opacity="0.5";
 
 //CONST VARIABLES
-const aspectRatioConst = 1.5;
+const aspectRatioConst = 1.2;
 // face back camera by default
 const constraints = { video: { facingMode: "environment" }, audio: false };
 
