@@ -35,7 +35,7 @@ html, body{
     align-items: center;
 }
 
-#result-container {
+#result-container, #prompt-btn-container {
     display: none;
     text-align: center;
 }
@@ -46,16 +46,12 @@ html, body{
     justify-content: center;
 }
 
-#prompt-btn-container {
-    display: block;
-}
-
 #actual-cam {
     /* display: flex;
     justify-content: center; */
     margin-top: 1rem;
-    height: auto;
-    width: auto;
+    height: 100vh;
+    width: 100vw;
 }
 
 #activate-btn {
@@ -91,9 +87,8 @@ html, body{
 
 /* wireframe styling */
 #a {
-    width: 450px;
-    height: 550px;
-    margin: auto;
+    width: 400px;
+    height: 500px;
     z-index: 2;
 }
 
@@ -126,8 +121,8 @@ html, body{
   
 #camera, #camera-view, #camera-canvas{
     position: fixed;
-    /* left: 0;
-    top: 0; */
+    left: 0;
+    top: 0;
     /* text-align: center; */
     object-fit: cover;
     z-index: 1;

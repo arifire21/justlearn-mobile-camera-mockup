@@ -53,7 +53,7 @@ function startCamera() {
     cameraCanvas.width = windowWidth + "px";
     cameraCanvas.height = heightCalc;
 
-    //WIREFRAME IS STYLED IN CSS
+    // WIREFRAME IS STYLED IN CSS
     //KEEP OUTPUT THE SAME
     cameraOutput.style.width = windowWidth + "px";
     cameraOutput.style.height = heightCalc;
@@ -83,6 +83,7 @@ function startCamera() {
 
     //show camera
     cameraContainer.style.display = "flex";
+    document.getElementById("prompt-btn-container").style.display = "block";
     viewfinderContainer.style.backgroundColor = "#333";
 }
 
@@ -105,7 +106,9 @@ cameraButton.addEventListener("click", function() {
 
     //hide anything camera related to show the preview / option buttons
     cameraContainer.style.display = "none";
+    
     document.getElementById("result-container").style.display = "block";
+    document.getElementById("prompt-btn-container").style.display = "none";
 });
 
 retakeButton.addEventListener("click", function() {
@@ -113,6 +116,7 @@ retakeButton.addEventListener("click", function() {
     cameraOutput.classList.remove("taken");
     // cameraCanvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
     cameraContainer.style.display = "block";
+    document.getElementById("prompt-btn-container").style.display = "block";
     document.getElementById("result-container").style.display = "none";
 });
 
