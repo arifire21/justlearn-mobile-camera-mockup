@@ -1,4 +1,5 @@
 //JS ELEMENTS
+const viewfinderContainer = document.querySelector("#full-viewfinder-container");
 const cameraContainer = document.querySelector("#full-cam-container");
 const cameraView = document.querySelector("#camera-view");
 const cameraOutput = document.querySelector("#pic-output");
@@ -12,8 +13,8 @@ const doneButton = document.querySelector("#done-btn");
 //CONST VARIABLES
 const aspectRatioConst = 1.2;
 
-// face back camera by default
-const constraints = { video: { facingMode: "environment" }, audio: false };
+// // face back camera by default
+// const constraints = { video: { facingMode: "environment" }, audio: false };
 
 //------------------------------------------------------//
 
@@ -27,19 +28,35 @@ function startCamera() {
     var windowWidth = window.innerWidth;
     var windowHeight = window.innerHeight;
 
+    const heightCalc = (windowWidth * aspectRatioConst) + "px";
+
+    // face back camera by default
+    //set w and h for camera feed
+    const constraints = { audio: false,
+                        video: {
+                            width: windowWidth,
+                            height: heightCalc,
+                            facingMode: "environment"
+                        }
+                        };
+
+    //make this full size for bg color
+    viewfinderContainer.style.width = windowWidth + "px";
+    viewfinderContainer.style.height = windowHeight + "px";
+
     cameraContainer.style.width = windowWidth + "px";
-    cameraContainer.style.height = windowHeight + "px";
+    cameraContainer.style.height = heightCalc
 
     cameraView.style.width = windowWidth + "px";
-    cameraView.style.height = windowHeight + "px";
+    cameraView.style.height = heightCalc;
 
-    cameraCanvas.style.width = windowWidth + "px";
-    cameraCanvas.style.height = windowHeight + "px";
+    cameraCanvas.width = windowWidth + "px";
+    cameraCanvas.height = heightCalc;
 
     //WIREFRAME IS STYLED IN CSS
     //KEEP OUTPUT THE SAME
     cameraOutput.style.width = windowWidth + "px";
-    cameraOutput.style.height = (windowWidth * aspectRatioConst) + "px";
+    cameraOutput.style.height = heightCalc;
 
     //camera permissions and such
     if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
@@ -65,7 +82,8 @@ function startCamera() {
     }
 
     //show camera
-    cameraContainer.style.display = "block";
+    cameraContainer.style.display = "flex";
+    viewfinderContainer.style.backgroundColor = "#333";
 }
 
 //get filename to save img
@@ -78,8 +96,9 @@ function getFileName() {
 //EVENT LISTENERS
 // Take a picture when button is tapped
 cameraButton.addEventListener("click", function() {
-    cameraCanvas.width = cameraView.videoWidth;
-    cameraCanvas.height = cameraView.videoHeight;
+    //try to manually set
+    cameraCanvas.width = windowWidth;
+    cameraCanvas.height = (windowWidth * aspectRatioConst);
     cameraCanvas.getContext("2d").drawImage(cameraView, 0, 0);
     cameraOutput.src = cameraCanvas.toDataURL("image/png");
     cameraOutput.classList.add("taken");

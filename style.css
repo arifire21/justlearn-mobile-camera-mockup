@@ -23,10 +23,13 @@ html, body{
 /* initial val, to be changed in js on permission start */
 #full-cam-container {
     display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
-#btn-wireframe-container {
-    height: 90%;
+#wireframe-container {
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,10 +46,22 @@ html, body{
     justify-content: center;
 }
 
+#prompt-btn-container {
+    display: block;
+}
+
+#actual-cam {
+    /* display: flex;
+    justify-content: center; */
+    margin-top: 1rem;
+    height: auto;
+    width: auto;
+}
+
 #activate-btn {
     cursor: pointer;
     width: 150px;
-    background-color: orange;
+    background-color: #ff4e00;
     color: white;
     font-size: 16px;
     border-radius: 30px;
@@ -61,7 +76,7 @@ html, body{
 #camera-btn {
     cursor: pointer;
     width: 120px;
-    background-color: orange;
+    background-color: #ff4e00;
     color: white;
     font-size: 16px;
     border-radius: 30px;
@@ -69,29 +84,29 @@ html, body{
     padding: 15px 20px;
     text-align: center;
     box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
-    position: absolute;
-    bottom: 30px;
+    /* position: absolute;
+    bottom: 30px; */
     z-index: 3;
 }
 
 /* wireframe styling */
 #a {
-    width: 400px;
-    height: 500px;
+    width: 450px;
+    height: 550px;
     margin: auto;
     z-index: 2;
 }
 
-#camera-btn:hover, #activate-btn:hover {
+/* #camera-btn:hover, #activate-btn:hover {
     background-color: darkorange;
-}
+} */
 
 #retake-btn, #done-btn {
     display: inline;
     cursor: pointer;
     width: 150px;
     margin: 10px;
-    background-color: teal;
+    background-color: #ff4e00;
     color: white;
     font-size: 16px;
     border-radius: 30px;
@@ -105,15 +120,15 @@ html, body{
     cursor: not-allowed;
 }
 
-#retake-btn:hover, #upload-btn:hover {
+/* #retake-btn:hover, #upload-btn:hover {
     background-color: darkgreen;
-}
+} */
   
 #camera, #camera-view, #camera-canvas{
-    position: absolute;
-    left: 0;
-    top: 0;
-    text-align: center;
+    position: fixed;
+    /* left: 0;
+    top: 0; */
+    /* text-align: center; */
     object-fit: cover;
     z-index: 1;
 }
