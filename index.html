@@ -26,15 +26,18 @@
 
         <div id="full-cam-container">
                 <!-- canvas to grab frames -->
-                <canvas id="camera-canvas">If you see this, your browser does not support canvases.</canvas>
                 <div id="actual-cam">
-                    <video id="camera-view" autoplay playsinline></video>
+                    <canvas id="camera-canvas">If you see this, your browser does not support canvases.</canvas>
+                    <video id="camera-vid" autoplay playsinline></video>
 
-                    <div id="btn-wireframe-container">
+                    <div id="wireframe-container">
                         <!-- wireframe -->
                         <img src="TreeAlignmentNoText.svg" alt="wireframe" id="a">
-                        <button id="camera-btn">Capture</button>
                     </div>
+                </div>
+                <div id="btn-prompt-container">
+                    <p id="capture-prompt">Align vertical line to tree trunk and horizontal line to where trunk meets the ground</p>
+                    <button id="camera-btn">Capture</button>
                 </div>
         </div>
     </div>
