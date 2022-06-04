@@ -1,6 +1,6 @@
 //JS ELEMENTS
 const cameraContainer = document.querySelector("#full-cam-container");
-const cameraView = document.querySelector("#camera-view");
+const cameraVid = document.querySelector("#camera-vid");
 const cameraOutput = document.querySelector("#pic-output");
 const cameraCanvas = document.querySelector("#camera-canvas");
 const cameraButton = document.querySelector("#camera-btn");
@@ -9,11 +9,11 @@ const startButton = document.querySelector("#activate-btn");
 const retakeButton = document.querySelector("#retake-btn");
 const doneButton = document.querySelector("#done-btn");
 
-//CONST VARIABLES
+//VARIABLES
 const aspectRatioConst = 1.2;
-
-// face back camera by default
-const constraints = { video: { facingMode: "environment" }, audio: false };
+var windowWidth = 0;
+var windowHeight = 0;
+var calc = 0;
 
 //------------------------------------------------------//
 
@@ -24,22 +24,32 @@ function startCamera() {
     document.getElementById("activate-btn-container").style.display = "none";
 
     //get screen size on start
-    var windowWidth = window.innerWidth;
-    var windowHeight = window.innerHeight;
+    windowWidth = window.innerWidth;
+    windowHeight = window.innerHeight;
 
-    cameraContainer.style.width = windowWidth + "px";
-    cameraContainer.style.height = windowHeight + "px";
+    calc = (windowWidth * aspectRatioConst);
 
-    cameraView.style.width = windowWidth + "px";
-    cameraView.style.height = windowHeight + "px";
+    // format vid constraints face back camera by default
+    const constraints = {
+        audio: false,
+        video: {
+            facingMode: "environment",
+            width: windowWidth,
+            height: calc
+        }
+    };
 
-    cameraCanvas.style.width = windowWidth + "px";
-    cameraCanvas.style.height = windowHeight + "px";
+    cameraVid.style.width = windowWidth + "px";
+    cameraVid.style.height = calc + "px";
 
-    //WIREFRAME IS STYLED IN CSS
+    // cameraCanvas.style.width = windowWidth + "px";
+    // cameraCanvas.style.height = calc + "px";
+
     //KEEP OUTPUT THE SAME
-    cameraOutput.style.width = windowWidth + "px";
-    cameraOutput.style.height = (windowWidth * aspectRatioConst) + "px";
+    cameraOutput.width = windowWidth + "px";
+    cameraOutput.height = calc + "px";
+
+    document.querySelector("#actual-cam").style.height = calc + "px";
 
     //camera permissions and such
     if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
@@ -50,7 +60,7 @@ function startCamera() {
             .getUserMedia(constraints)
             .then(function(stream) {
             track = stream.getTracks()[0];
-            cameraView.srcObject = stream;
+            cameraVid.srcObject = stream;
         })
         .catch(function(error) {
             if(error.name == "NotAllowedError"){
@@ -64,8 +74,14 @@ function startCamera() {
         });
     }
 
+    //tablet sizes?
+    if(windowWidth >= 810){
+        document.querySelector("#full-cam-container").style.paddingTop = 0;
+    }
+
     //show camera
     cameraContainer.style.display = "block";
+    document.querySelector("#full-viewfinder-container").style.backgroundColor = "#333";
 }
 
 //get filename to save img
@@ -78,9 +94,9 @@ function getFileName() {
 //EVENT LISTENERS
 // Take a picture when button is tapped
 cameraButton.addEventListener("click", function() {
-    cameraCanvas.width = cameraView.videoWidth;
-    cameraCanvas.height = cameraView.videoHeight;
-    cameraCanvas.getContext("2d").drawImage(cameraView, 0, 0);
+    cameraCanvas.width = windowWidth;
+    cameraCanvas.height = calc;
+    cameraCanvas.getContext("2d").drawImage(cameraVid, 0, 0);
     cameraOutput.src = cameraCanvas.toDataURL("image/png");
     cameraOutput.classList.add("taken");
 
