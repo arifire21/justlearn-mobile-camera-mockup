@@ -11,9 +11,9 @@ const doneButton = document.querySelector("#done-btn");
 
 //VARIABLES
 const aspectRatioConst = 1.2;
-var windowWidth = 0;
-var windowHeight = 0;
-var calc = 0;
+let windowWidth = 0;
+let windowHeight = 0;
+let calc = 0;
 
 //------------------------------------------------------//
 
@@ -45,9 +45,11 @@ function startCamera() {
     // cameraCanvas.style.width = windowWidth + "px";
     // cameraCanvas.style.height = calc + "px";
 
-    //KEEP OUTPUT THE SAME
-    cameraOutput.width = windowWidth + "px";
-    cameraOutput.height = calc + "px";
+    cameraOutput.width = windowWidth;
+    cameraOutput.height = calc;
+
+    cameraCanvas.width = windowWidth;
+    cameraCanvas.height = calc;
 
     document.querySelector("#actual-cam").style.height = calc + "px";
 
@@ -94,8 +96,6 @@ function getFileName() {
 //EVENT LISTENERS
 // Take a picture when button is tapped
 cameraButton.addEventListener("click", function() {
-    cameraCanvas.width = windowWidth;
-    cameraCanvas.height = calc;
     cameraCanvas.getContext("2d").drawImage(cameraVid, 0, 0);
     cameraOutput.src = cameraCanvas.toDataURL("image/png");
     cameraOutput.classList.add("taken");

@@ -13,7 +13,6 @@ html, body{
     height: 100%;
     width: 100%;
     overflow-y: hidden;
-    font-family: "NexaBold";
   }
 
 /* p{
@@ -33,6 +32,8 @@ html, body{
 
 #wireframe-container {
     /* height: 90%; */
+    width: fit-content;
+    height: fit-content;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -119,10 +120,10 @@ html, body{
     background-color: darkgreen;
 } */
   
-#camera, #camera-vid, #camera-canvas{
+#camera-vid, #camera-canvas{
     position: absolute;
-    /* left: 0;
-    top: 0; */
+    /* left: 0; */
+    /* top: 0; */
     text-align: center;
     object-fit: cover;
     z-index: 1;
