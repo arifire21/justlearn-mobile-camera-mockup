@@ -108,7 +108,7 @@ cameraButton.addEventListener("click", function() {
 retakeButton.addEventListener("click", function() {
     cameraOutput.src = "//:0";
     cameraOutput.classList.remove("taken");
-    // cameraCanvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
+    cameraCanvas.getContext("2d").clearRect(0, 0, cameraCanvas.width, cameraCanvas.height);
     cameraContainer.style.display = "block";
     document.getElementById("result-container").style.display = "none";
 });
