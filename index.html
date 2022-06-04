@@ -1,16 +1,14 @@
 <html lang=”en”>
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Mobile Camera Test</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Mobile Camera Test</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
 
 <body>
-    <div id="full-viewfinder-container">
-        <!-- for resizing on actual tree interaction page -->
+    <div id="full-viewfinder-container"> <!-- for resizing on actual tree interaction page -->
         <div id="activate-btn-container">
             <!-- <p class="center">Hold position for 10 seconds prior to taking photo for accurate reading</p> -->
             <button id="activate-btn">Start Camera</button>
@@ -23,7 +21,7 @@
             <button id="retake-btn">Retake Photo</button>
             <button id="done-btn">Done</button>
         </div>
-
+        
         <p id="err-instructions">placeholder text</p>
 
         <div id="full-cam-container">
@@ -34,35 +32,29 @@
 
                 <div id="wireframe-container">
                     <!-- wireframe -->
-                    <?xml version="1.0" encoding="UTF-8"?><svg id="a" xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 240 820.2 1523.47">
+                    <svg id="a" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1000" height="1000" viewBox="0 0 1000 1000" xml:space="preserve">
+                        <desc>Created with Fabric.js 3.5.0</desc>
                         <defs>
-                            <style>
-                                .b {
-                                    fill: #fff;
-                                }
-
-                                .c {
-                                    fill: none;
-                                    stroke: #fff;
-                                    stroke-miterlimit: 10;
-                                    stroke-width: 13px;
-                                }
-                            </style>
                         </defs>
-                        <g>
-                            <line class="c" x1="410.24" y1="396.97" x2="410.74" y2="1516.97" />
-                            <line class="c" x1="34.96" y1="1516.9" x2="786.03" y2="1516.97" />
+                        <rect x="0" y="0" width="100%" height="100%" fill="rgba(2,2,2,0)"/>
+                        <g transform="matrix(1 0 0 1 500.2608 628.1551)" id="626705">
+                        <g style="">
+                                <g transform="matrix(0.6564 0 0 0.6564 -0.0033 0)" id="a">
+                        <line style="stroke: rgb(255,255,255); stroke-width: 13; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 10; is-custom-font: none; font-file-url: none; fill: none; fill-rule: nonzero; opacity: 1;" x1="-0.25" y1="-560" x2="0.25" y2="560"/>
                         </g>
-                    </svg>
+                                <g transform="matrix(0.6564 0 0 0.6564 0 367.5611)" id="a">
+                        <line style="stroke: rgb(255,255,255); stroke-width: 13; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 10; is-custom-font: none; font-file-url: none; fill: none; fill-rule: nonzero; opacity: 1;" x1="-375.53499999999997" y1="-0.03499999999996817" x2="375.53499999999997" y2="0.03499999999996817"/>
+                        </g>
+                        </g>
+                        </g>
+                        </svg>
                 </div>
             </div>
-        </div>
 
-        <!-- moved here bc of flex behavior -->
-        <div id="prompt-btn-container">
-            <p style="color: #fff;text-align: center;margin: 0.5rem;">Align vertical line to tree trunk and horizontal line to where tree trunk hits the ground</p>
-            <button id="camera-btn">Capture</button>
+            <div id="prompt-btn-container">
+                <p>TEXT HERE</p>
+                <button id="camera-btn">Capture</button>
+            </div>
         </div>
     </div>
 
