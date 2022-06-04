@@ -46,7 +46,7 @@ html, body{
 #activate-btn {
     cursor: pointer;
     width: 150px;
-    background-color: orange;
+    background-color: #ff4e00;
     color: white;
     font-size: 16px;
     border-radius: 30px;
@@ -61,7 +61,7 @@ html, body{
 #camera-btn {
     cursor: pointer;
     width: 120px;
-    background-color: orange;
+    background-color: #ff4e00;
     color: white;
     font-size: 16px;
     border-radius: 30px;
@@ -82,9 +82,9 @@ html, body{
     z-index: 2;
 }
 
-#camera-btn:hover, #activate-btn:hover {
-    background-color: darkorange;
-}
+/* #camera-btn:hover, #activate-btn:hover {
+    background-color: dark#ff4e00;
+} */
 
 #retake-btn, #done-btn {
     display: inline;
@@ -105,9 +105,9 @@ html, body{
     cursor: not-allowed;
 }
 
-#retake-btn:hover, #upload-btn:hover {
+/* #retake-btn:hover, #upload-btn:hover {
     background-color: darkgreen;
-}
+} */
   
 #camera, #camera-view, #camera-canvas{
     position: absolute;
