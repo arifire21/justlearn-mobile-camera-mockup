@@ -1,4 +1,5 @@
 //JS ELEMENTS
+const viewfinderContainer = document.querySelector("#full-viewfinder-container");
 const cameraContainer = document.querySelector("#full-cam-container");
 const cameraVid = document.querySelector("#camera-vid");
 const cameraOutput = document.querySelector("#pic-output");
@@ -11,9 +12,9 @@ const doneButton = document.querySelector("#done-btn");
 
 //VARIABLES
 const aspectRatioConst = 1.2;
-let windowWidth = 0;
-let windowHeight = 0;
-let calc = 0;
+// let windowWidth = 0;
+// let windowHeight = 0;
+// let calc = 0;
 
 //------------------------------------------------------//
 
@@ -24,20 +25,23 @@ function startCamera() {
     document.getElementById("activate-btn-container").style.display = "none";
 
     //get screen size on start
-    windowWidth = window.outerWidth;
-    windowHeight = window.outerHeight;
+    const windowWidth = window.outerWidth;
+    const windowHeight = window.outerHeight;
 
-    calc = (windowWidth * aspectRatioConst);
+    const calc = (windowWidth * aspectRatioConst);
 
     // format vid constraints face back camera by default
     const constraints = {
         audio: false,
         video: {
             facingMode: "environment",
-            width: windowWidth,
-            height: calc
+            // width: windowWidth,
+            // height: calc
         }
     };
+
+    viewfinderContainer.height = windowHeight;
+    // viewfinderContainer.style.backgroundColor = "#333";
 
     cameraVid.style.width = windowWidth + "px";
     cameraVid.style.height = calc + "px";

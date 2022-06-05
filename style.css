@@ -20,9 +20,9 @@ html, body{
 } */
 
 /* initial val, to be changed in js on permission start */
-#full-viewfinder-container {
+/* #full-viewfinder-container {
     height: 100vh;
-}
+} */
 
 #full-cam-container {
     display: none;
