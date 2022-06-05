@@ -27,7 +27,7 @@ html, body{
 #full-cam-container {
     display: none;
     height: 100%;
-    padding-top: 10%;
+    /* padding-top: 10%; */
 }
 
 #wireframe-container {
