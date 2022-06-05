@@ -81,12 +81,12 @@ function startCamera() {
     }
 
     //tablet sizes?
-    if(windowWidth >= 810){
-        document.querySelector("#full-cam-container").style.paddingTop = 0;
-    }
+    // if(windowWidth >= 810){
+    //     document.querySelector("#full-cam-container").style.paddingTop = 0;
+    // }
 
     //show camera
-    cameraContainer.style.display = "block";
+    cameraContainer.style.display = "flex";
     document.querySelector("#full-viewfinder-container").style.backgroundColor = "#333";
 }
 
