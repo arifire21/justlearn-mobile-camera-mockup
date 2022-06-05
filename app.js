@@ -24,8 +24,8 @@ function startCamera() {
     document.getElementById("activate-btn-container").style.display = "none";
 
     //get screen size on start
-    windowWidth = window.innerWidth;
-    windowHeight = window.innerHeight;
+    windowWidth = window.outerWidth;
+    windowHeight = window.outerHeight;
 
     calc = (windowWidth * aspectRatioConst);
 
