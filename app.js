@@ -11,7 +11,7 @@ const retakeButton = document.querySelector("#retake-btn");
 const doneButton = document.querySelector("#done-btn");
 
 //VARIABLES
-const aspectRatioConst = 1.2;
+const aspectRatioConst = 1.1;
 // let windowWidth = 0;
 // let windowHeight = 0;
 // let calc = 0;
@@ -25,8 +25,8 @@ function startCamera() {
     document.getElementById("activate-btn-container").style.display = "none";
 
     //get screen size on start
-    const windowWidth = window.outerWidth;
-    const windowHeight = window.outerHeight;
+    const windowWidth = screen.width;
+    const windowHeight = screen.height;
 
     const calc = (windowWidth * aspectRatioConst);
 
