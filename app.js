@@ -35,8 +35,8 @@ function startCamera() {
         audio: false,
         video: {
             facingMode: "environment",
-            width: { min: windowWidth, ideal: windowWidth },
-            height: { min: calc, ideal: calc },
+            // width: { min: windowWidth, ideal: windowWidth },
+            // height: { min: calc, ideal: calc },
         }
     };
 
