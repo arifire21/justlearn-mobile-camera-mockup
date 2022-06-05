@@ -11,10 +11,7 @@ const retakeButton = document.querySelector("#retake-btn");
 const doneButton = document.querySelector("#done-btn");
 
 //VARIABLES
-const aspectRatioConst = 1.1;
-// let windowWidth = 0;
-// let windowHeight = 0;
-// let calc = 0;
+const aspectRatioConst = 1.2;
 
 //------------------------------------------------------//
 
@@ -25,8 +22,8 @@ function startCamera() {
     document.getElementById("activate-btn-container").style.display = "none";
 
     //get screen size on start
-    const windowWidth = screen.width;
-    const windowHeight = screen.height;
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
 
     const calc = (windowWidth * aspectRatioConst);
 
@@ -35,8 +32,6 @@ function startCamera() {
         audio: false,
         video: {
             facingMode: "environment",
-            width: 320,
-            height: 320
         }
     };
 
