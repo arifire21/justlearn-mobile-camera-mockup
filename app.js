@@ -32,15 +32,13 @@ function startCamera() {
         audio: false,
         video: {
             facingMode: "environment",
-            width: 400,
-            height: 300
         }
     };
 
     viewfinderContainer.height = windowHeight;
 
-    // cameraVid.style.width = windowWidth + "px";
-    // cameraVid.style.height = calc + "px";
+    cameraVid.style.width = windowWidth + "px";
+    cameraVid.style.height = calc + "px";
 
     // cameraCanvas.style.width = windowWidth + "px";
     // cameraCanvas.style.height = calc + "px";
