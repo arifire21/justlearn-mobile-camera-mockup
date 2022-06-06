@@ -32,6 +32,8 @@ function startCamera() {
         audio: false,
         video: {
             facingMode: "environment",
+            width: 400,
+            height: 300
         }
     };
 
