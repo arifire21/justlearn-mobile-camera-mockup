@@ -11,7 +11,7 @@ const retakeButton = document.querySelector("#retake-btn");
 const doneButton = document.querySelector("#done-btn");
 
 //VARIABLES
-const aspectRatioConst = 1.2;
+const aspectRatioConst = 1.1;
 
 //------------------------------------------------------//
 
