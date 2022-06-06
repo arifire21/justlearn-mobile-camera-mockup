@@ -60,9 +60,9 @@ html, body{
     justify-content: center;
 }
 
-/* #actual-cam {
+#actual-cam {
     height: max-content;
-} */
+}
 
 #activate-btn {
     cursor: pointer;
@@ -96,7 +96,7 @@ html, body{
 }
 
 /* wireframe styling */
-#a {
+#wireframe {
     /* width: 400px;
     height: 500px; */
     /* margin: auto; */
