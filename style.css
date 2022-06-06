@@ -60,6 +60,10 @@ html, body{
     justify-content: center;
 }
 
+#actual-cam {
+    height: max-content;
+}
+
 #activate-btn {
     cursor: pointer;
     width: 150px;

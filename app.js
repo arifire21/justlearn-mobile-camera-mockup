@@ -36,10 +36,9 @@ function startCamera() {
     };
 
     viewfinderContainer.height = windowHeight;
-    // viewfinderContainer.style.backgroundColor = "#333";
 
-    cameraVid.style.width = windowWidth + "px";
-    cameraVid.style.height = calc + "px";
+    // cameraVid.style.width = windowWidth + "px";
+    // cameraVid.style.height = calc + "px";
 
     // cameraCanvas.style.width = windowWidth + "px";
     // cameraCanvas.style.height = calc + "px";
@@ -49,8 +48,6 @@ function startCamera() {
 
     cameraCanvas.width = windowWidth;
     cameraCanvas.height = calc;
-
-    document.querySelector("#actual-cam").style.height = calc + "px";
 
     //camera permissions and such
     if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
