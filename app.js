@@ -37,6 +37,8 @@ function startCamera() {
 
     viewfinderContainer.height = windowHeight;
 
+    document.querySelector("#actual-cam").height = calc;
+
     cameraVid.style.width = windowWidth + "px";
     cameraVid.style.height = calc + "px";
 
