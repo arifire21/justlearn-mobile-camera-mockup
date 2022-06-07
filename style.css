@@ -35,6 +35,8 @@ html, body{
     /* padding-top: 10%; */
     /* padding: auto 0%; */
     flex-direction: column;
+    position: absolute;
+    top: 0;
 }
 
 #wireframe-container {
@@ -139,6 +141,7 @@ html, body{
 
 #camera-canvas{
     position: absolute;
+    /* top: 0; */
     z-index: 1;
     object-position: center center !important;
 }

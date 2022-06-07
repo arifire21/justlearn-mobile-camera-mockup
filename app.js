@@ -13,7 +13,7 @@ doneButton.disabled = true;
 doneButton.style.opacity="0.5";
 
 //VARIABLES
-const aspectRatioConst = 1.1;
+const aspectRatioConst = 1.2;
 var windowWidth = 0;
 var calc=0;
 
