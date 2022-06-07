@@ -128,11 +128,17 @@ html, body{
     background-color: darkgreen;
 } */
   
-#camera-vid, #camera-canvas{
+#camera-vid{
     position: absolute;
     /* left: 0; */
     /* top: 0; */
     object-fit: cover;
+    z-index: 1;
+    object-position: center center !important;
+}
+
+#camera-canvas{
+    position: absolute;
     z-index: 1;
     object-position: center center !important;
 }
