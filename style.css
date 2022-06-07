@@ -130,10 +130,11 @@ html, body{
   
 #camera-vid, #camera-canvas{
     position: absolute;
-    left: 0;
+    /* left: 0; */
     /* top: 0; */
     object-fit: cover;
     z-index: 1;
+    object-position: center center !important;
 }
 
 /* #camera-vid {

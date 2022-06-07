@@ -59,7 +59,7 @@ function startCamera() {
 
     cameraCanvas.width = windowWidth;
     cameraCanvas.height = calc;
-    // cameraCanvas.getContext("2d").scale(0.9, 0.9)
+    // cameraCanvas.getContext("2d").scale(1.3, 1.3)
 
 
     //camera permissions and such
