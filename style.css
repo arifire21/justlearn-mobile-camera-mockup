@@ -132,7 +132,7 @@ html, body{
     position: absolute;
     left: 0;
     /* top: 0; */
-    object-fit: none;
+    object-fit: cover;
     z-index: 1;
 }
 
