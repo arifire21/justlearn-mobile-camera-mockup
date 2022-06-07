@@ -59,6 +59,8 @@ function startCamera() {
 
     cameraCanvas.width = windowWidth;
     cameraCanvas.height = calc;
+    // cameraCanvas.getContext("2d").scale(0.9, 0.9)
+
 
     //camera permissions and such
     if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
@@ -103,7 +105,7 @@ function getFileName() {
 //EVENT LISTENERS
 // Take a picture when button is tapped
 cameraButton.addEventListener("click", function() {
-    cameraCanvas.getContext("2d").drawImage(cameraVid, 0, 0, windowWidth, calc, 0, 0, windowWidth, calc);
+    cameraCanvas.getContext("2d").drawImage(cameraVid, windowWidth-200, 0, windowWidth, calc, 0, 0, windowWidth, calc);
     cameraOutput.src = cameraCanvas.toDataURL("image/png");
     cameraOutput.classList.add("taken");
 
