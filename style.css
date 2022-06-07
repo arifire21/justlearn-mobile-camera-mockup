@@ -12,8 +12,8 @@ html, body{
     padding: 0;
     height: 100%;
     width: 100%;
-    /* overflow: hidden; */
-    overflow-x: scroll;
+    overflow: hidden;
+    /* overflow-x: scroll; */
   }
 
 /* p{
@@ -98,9 +98,6 @@ html, body{
 
 /* wireframe styling */
 #wireframe {
-    /* width: 400px;
-    height: 500px; */
-    /* margin: auto; */
     z-index: 2;
 }
 
@@ -135,7 +132,7 @@ html, body{
     position: absolute;
     left: 0;
     /* top: 0; */
-    object-fit: cover;
+    /* object-fit: none; */
     z-index: 1;
 }
 

@@ -103,7 +103,7 @@ function getFileName() {
 //EVENT LISTENERS
 // Take a picture when button is tapped
 cameraButton.addEventListener("click", function() {
-    cameraCanvas.getContext("2d").drawImage(cameraVid, 0, 130, windowWidth, calc, 0, 0, windowWidth, calc);
+    cameraCanvas.getContext("2d").drawImage(cameraVid, 0, 0, windowWidth, calc, 0, 0, windowWidth, calc);
     cameraOutput.src = cameraCanvas.toDataURL("image/png");
     cameraOutput.classList.add("taken");
 
@@ -115,7 +115,7 @@ cameraButton.addEventListener("click", function() {
 retakeButton.addEventListener("click", function() {
     cameraOutput.src = "//:0";
     cameraOutput.classList.remove("taken");
-    // cameraCanvas.getContext("2d").clearRect(0, 0, cameraCanvas.width, cameraCanvas.height);
+    cameraCanvas.getContext("2d").clearRect(0, 0, cameraCanvas.width, cameraCanvas.height);
     cameraContainer.style.display = "block";
     document.getElementById("result-container").style.display = "none";
 });
