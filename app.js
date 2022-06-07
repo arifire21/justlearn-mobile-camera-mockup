@@ -105,7 +105,7 @@ function getFileName() {
 //EVENT LISTENERS
 // Take a picture when button is tapped
 cameraButton.addEventListener("click", function() {
-    cameraCanvas.getContext("2d").drawImage(cameraVid, windowWidth-200, 0, windowWidth, calc, 0, 0, windowWidth, calc);
+    cameraCanvas.getContext("2d").drawImage(cameraVid, cameraVid.width, 20, windowWidth, calc, 0, 0, windowWidth, calc);
     cameraOutput.src = cameraCanvas.toDataURL("image/png");
     cameraOutput.classList.add("taken");
 
