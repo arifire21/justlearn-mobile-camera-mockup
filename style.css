@@ -134,7 +134,7 @@ html, body{
     position: absolute;
     /* left: 0; */
     /* top: 0; */
-    object-fit: cover;
+    object-fit: none;
     z-index: 1;
     object-position: center center !important;
 }
