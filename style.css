@@ -134,8 +134,9 @@ html, body{
     display: block;
     /* margin: auto 0; */
     position: absolute;
-    margin-left: 50vw;
-    transform: translate(-50%);
+    width: 100vw;
+    /* margin-left: 50vw;
+    transform: translate(-50%); */
     /* left: 0; */
     /* top: 0; */
     /* object-fit: none; */

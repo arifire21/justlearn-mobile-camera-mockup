@@ -43,7 +43,7 @@ function startCamera() {
 
     // document.querySelector("#actual-cam").style.height = calc + "px";
 
-    cameraVid.width = windowWidth;
+    // cameraVid.width = windowWidth;
     cameraVid.height = calc;
 
     document.querySelector("#wireframe").style.width = windowWidth + "px";
