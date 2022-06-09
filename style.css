@@ -131,6 +131,8 @@ html, body{
 } */
   
 #camera-vid{
+    display: block;
+    margin: auto;
     position: absolute;
     /* left: 0; */
     /* top: 0; */
