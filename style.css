@@ -132,7 +132,7 @@ html, body{
   
 #camera-vid{
     display: block;
-    margin: auto;
+    margin: auto 0;
     position: absolute;
     /* left: 0; */
     /* top: 0; */
@@ -147,11 +147,6 @@ html, body{
     z-index: 1;
     object-position: center center !important;
 }
-
-/* #camera-vid {
-    width: 100%;
-    height: 60%;
-} */
 
 .taken{
     z-index: 4;
