@@ -31,15 +31,12 @@ html, body{
 
 #full-cam-container {
     display: none;
-    height: max-content;
-    /* padding-top: 10%; */
-    /* padding: auto 0%; */
+    height: 100%;
     flex-direction: column;
-    /* top: 0; */
+    width: 100%;
 }
 
 #wireframe-container {
-    /* height: 90%; */
     width: fit-content;
     height: fit-content;
     display: flex;
@@ -63,7 +60,7 @@ html, body{
 }
 
 #actual-cam {
-    height: max-content;
+    min-height: max-content;
 }
 
 #activate-btn {
@@ -100,6 +97,9 @@ html, body{
 /* wireframe styling */
 #wireframe {
     z-index: 2;
+    /* same as vid and canvas */
+    width: 100%;
+    height: 70%;
 }
 
 /* #camera-btn:hover, #activate-btn:hover {
@@ -130,7 +130,7 @@ html, body{
 } */
   
 #camera-vid{
-    display: block;
+    /* display: block; */
     /* margin: auto 0; */
     position: absolute;
     /* left: 0; */
@@ -148,8 +148,13 @@ html, body{
 }
 
 #camera-vid, #camera-canvas, #pic-output {
-    object-fit: contain;
     aspect-ratio: 4/3;
+    width: 100%;
+    height: 70%;
+}
+
+#camera-vid, #camera-canvas {
+    object-fit: cover !important;
 }
 
 .taken{
@@ -166,4 +171,5 @@ html, body{
 #capture-prompt {
     color: black;
     margin: 0.5em 1em;
+    font-size: small;
 }

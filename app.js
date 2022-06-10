@@ -46,8 +46,8 @@ function startCamera() {
     // cameraVid.width = windowWidth;
     // cameraVid.height = calc;
 
-    // document.querySelector("#wireframe").style.width = windowWidth + "px";
-    // document.querySelector("#wireframe").style.height = calc + "px";
+    // document.querySelector("#wireframe").style.width = cameraVid.width;
+    // document.querySelector("#wireframe").style.height = cameraVid.height;
 
     // // cameraCanvas.style.width = windowWidth + "px";
     // // cameraCanvas.style.height = calc + "px";
