@@ -43,8 +43,8 @@ function startCamera() {
 
     // document.querySelector("#actual-cam").style.height = calc + "px";
 
-    cameraVid.width = windowWidth;
-    cameraVid.height = calc;
+    // cameraVid.width = windowWidth;
+    // cameraVid.height = calc;
 
     document.querySelector("#wireframe").style.width = windowWidth + "px";
     document.querySelector("#wireframe").style.height = calc + "px";
@@ -52,13 +52,13 @@ function startCamera() {
     // cameraCanvas.style.width = windowWidth + "px";
     // cameraCanvas.style.height = calc + "px";
 
-    cameraOutput.width = windowWidth;
-    cameraOutput.height = calc;
+    // cameraOutput.width = windowWidth;
+    // cameraOutput.height = calc;
     // cameraOutput.style.width = windowWidth + "px";
     // cameraOutput.style.height = calc + "px";
 
-    cameraCanvas.width = windowWidth;
-    cameraCanvas.height = calc;
+    // cameraCanvas.width = windowWidth;
+    // cameraCanvas.height = calc;
     // cameraCanvas.getContext("2d").scale(1.3, 1.3)
 
 
@@ -91,7 +91,7 @@ function startCamera() {
     // }
 
     //show camera
-    cameraContainer.style.display = "flex";
+    cameraContainer.style.display = "block";
     document.querySelector("#full-viewfinder-container").style.backgroundColor = "#333";
 }
 

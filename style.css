@@ -148,6 +148,10 @@ html, body{
     object-position: center center !important;
 }
 
+#camera-vid, #camera-canvas, #pic-output {
+    aspect-ratio: 4/3 !important;
+}
+
 .taken{
     z-index: 4;
 }
