@@ -134,24 +134,24 @@ html, body{
     /* top: 0; */
     /* object-fit: none; */
     z-index: 1;
-    object-position: center center !important;
+    /* object-position: center center !important; */
 }
 
 #camera-canvas{
     position: absolute;
     /* top: 0; */
     z-index: 1;
-    object-position: center center !important;
+    /* object-position: center center !important; */
 }
 
 #camera-vid, #camera-canvas, #pic-output {
     aspect-ratio: 4/3;
     width: 90% !important;
-    height: 70%;
+    height: 100%;
 }
 
-#camera-vid, #camera-canvas {
-    object-fit: contain !important;
+#camera-vid {
+    object-fit: none !important;
 }
 
 .taken{
