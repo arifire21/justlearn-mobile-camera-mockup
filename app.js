@@ -11,9 +11,6 @@ const startButton = document.querySelector("#activate-btn");
 const retakeButton = document.querySelector("#retake-btn");
 const doneButton = document.querySelector("#done-btn");
 
-// doneButton.disabled = true;
-// doneButton.style.opacity="0.5";
-
 //VARIABLES
 const aspectRatioConst = 1.2;
 var windowWidth = 0;
