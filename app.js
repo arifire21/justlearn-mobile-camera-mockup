@@ -1,6 +1,7 @@
 //JS ELEMENTS
 const viewfinderContainer = document.querySelector("#full-viewfinder-container");
-const cameraContainer = document.querySelector("#full-cam-container");
+const cameraContainer = document.querySelector("#camera-container");
+const remainderContainer = document.querySelector("#remainder-container");
 const cameraVid = document.querySelector("#camera-vid");
 const cameraOutput = document.querySelector("#pic-output");
 const cameraCanvas = document.querySelector("#camera-canvas");
@@ -9,6 +10,7 @@ const cameraButton = document.querySelector("#camera-btn");
 const startButton = document.querySelector("#activate-btn");
 const retakeButton = document.querySelector("#retake-btn");
 const doneButton = document.querySelector("#done-btn");
+
 doneButton.disabled = true;
 doneButton.style.opacity="0.5";
 
@@ -46,21 +48,16 @@ function startCamera() {
     cameraVid.width = windowWidth;
     cameraVid.height = calc;
 
-    document.querySelector("#wireframe").style.width = windowWidth + "px";
-    document.querySelector("#wireframe").style.height = calc + "px";
-
-    // cameraCanvas.style.width = windowWidth + "px";
-    // cameraCanvas.style.height = calc + "px";
-
     cameraOutput.width = windowWidth;
     cameraOutput.height = calc;
-    // cameraOutput.style.width = windowWidth + "px";
-    // cameraOutput.style.height = calc + "px";
 
     cameraCanvas.width = windowWidth;
     cameraCanvas.height = calc;
-    // cameraCanvas.getContext("2d").scale(1.3, 1.3)
 
+    document.querySelector("#wireframe").style.width = windowWidth + "px";
+    document.querySelector("#wireframe").style.height = calc + "px";
+
+    document.querySelector("#remainder-container").style.height = (windowHeight - calc) + "px";
 
     //camera permissions and such
     if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
@@ -85,13 +82,9 @@ function startCamera() {
         });
     }
 
-    //tablet sizes?
-    // if(windowWidth >= 810){
-    //     document.querySelector("#full-cam-container").style.paddingTop = 0;
-    // }
-
     //show camera
-    cameraContainer.style.display = "flex";
+    cameraContainer.style.display = "block";
+    remainderContainer.style.display = "block";
     document.querySelector("#full-viewfinder-container").style.backgroundColor = "#333";
 }
 
@@ -111,6 +104,7 @@ cameraButton.addEventListener("click", function() {
 
     //hide anything camera related to show the preview / option buttons
     cameraContainer.style.display = "none";
+    remainderContainer.style.display = "none";
     document.getElementById("result-container").style.display = "block";
 });
 
@@ -119,6 +113,7 @@ retakeButton.addEventListener("click", function() {
     cameraOutput.classList.remove("taken");
     cameraCanvas.getContext("2d").clearRect(0, 0, cameraCanvas.width, cameraCanvas.height);
     cameraContainer.style.display = "block";
+    remainderContainer.style.display = "block";
     document.getElementById("result-container").style.display = "none";
 });
 

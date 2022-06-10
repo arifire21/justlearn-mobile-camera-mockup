@@ -16,27 +16,35 @@ html, body{
     /* overflow-x: scroll; */
   }
 
-/* p{
-    width: fit-content;
-} */
-
-/* initial val, to be changed in js on permission start */
-#full-viewfinder-container {
-    height: 100%;
-    display: flex;
-    align-items: center;
+/* for dark background */
+  #full-viewfinder-container {
+    height: 100vh;
+    /* display: flex;
+    /* align-items: center;
     justify-content: center;
-    flex-direction: column;
+    flex-direction: column; */
 }
 
-#full-cam-container {
+/* item 1 */
+#camera-container {
     display: none;
     height: max-content;
-    /* padding-top: 10%; */
-    /* padding: auto 0%; */
+    /* position: absolute;
+    top: 0; */
+}
+
+/* item 2 */
+#remainder-container {
+    display: none;
+}
+
+#btn-prompt-container  {
+    height: 100%;
+    display: flex;
     flex-direction: column;
-    position: absolute;
-    top: 0;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 #wireframe-container {
@@ -48,23 +56,18 @@ html, body{
     align-items: center;
 }
 
-#btn-prompt-container {
-    text-align: center;
-}
-
 #result-container {
     display: none;
     text-align: center;
+    /* doesnt matter*/
+    /* position: absolute;
+    top: 0; */
 }
 
-#activate-btn-container {
+#activate-btn-container  {
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
-
-#actual-cam {
-    height: max-content;
 }
 
 #activate-btn {
@@ -102,10 +105,6 @@ html, body{
 #wireframe {
     z-index: 2;
 }
-
-/* #camera-btn:hover, #activate-btn:hover {
-    background-color: dark#ff4e00;
-} */
 
 #retake-btn, #done-btn {
     display: inline;
@@ -146,11 +145,6 @@ html, body{
     object-position: center center !important;
 }
 
-/* #camera-vid {
-    width: 100%;
-    height: 60%;
-} */
-
 .taken{
     z-index: 4;
 }
@@ -164,5 +158,5 @@ html, body{
 
 #capture-prompt {
     color: white;
-    margin: 0.8em 1em;
+    margin: 0.5em 1em;
 }
