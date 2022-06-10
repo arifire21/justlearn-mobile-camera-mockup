@@ -46,8 +46,13 @@ function startCamera() {
     // cameraVid.width = windowWidth;
     // cameraVid.height = calc;
 
-    // document.querySelector("#wireframe").style.width = cameraVid.width;
-    // document.querySelector("#wireframe").style.height = cameraVid.height;
+    //style wireframe relative to camera size so it doesnt clip out
+    let vidStyles = window.getComputedStyle(cameraVid);
+    let styledVidWidth = vidStyles.getPropertyValue('width');
+    let styledVidHeight = vidStyles.getPropertyValue('height');
+
+    document.querySelector("#wireframe").style.width = styledVidWidth;
+    document.querySelector("#wireframe").style.height = styledVidHeight;
 
     // // cameraCanvas.style.width = windowWidth + "px";
     // // cameraCanvas.style.height = calc + "px";
@@ -84,11 +89,6 @@ function startCamera() {
             }
         });
     }
-
-    //tablet sizes?
-    // if(windowWidth >= 810){
-    //     document.querySelector("#full-cam-container").style.paddingTop = 0;
-    // }
 
     //show camera
     cameraContainer.style.display = "flex";
