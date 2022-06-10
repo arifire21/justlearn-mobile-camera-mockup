@@ -11,8 +11,8 @@ const startButton = document.querySelector("#activate-btn");
 const retakeButton = document.querySelector("#retake-btn");
 const doneButton = document.querySelector("#done-btn");
 
-doneButton.disabled = true;
-doneButton.style.opacity="0.5";
+// doneButton.disabled = true;
+// doneButton.style.opacity="0.5";
 
 //VARIABLES
 const aspectRatioConst = 1.2;
@@ -83,7 +83,10 @@ function startCamera() {
     //show camera
     cameraContainer.style.display = "block";
     remainderContainer.style.display = "block";
-    document.querySelector("#full-viewfinder-container").style.backgroundColor = "#333";
+    viewfinderContainer.style.backgroundColor = "#333";
+    //disable scroll temporarily
+    viewfinderContainer.style.overflow = "hidden";
+    console.log("tree camera -- scrolling disabled");
 }
 
 //get filename to save img
@@ -115,13 +118,14 @@ retakeButton.addEventListener("click", function() {
     document.getElementById("result-container").style.display = "none";
 });
 
-//do whatever to next window here
-// doneButton.addEventListener("click", function() {
-//     let imgPath = cameraOutput.getAttribute("src");
-//     let fileName = getFileName();
-//     //from FileSaver
-//     saveAs(imgPath, fileName);
-// });
+//kinda temp behavior
+//close and re-enable scroll
+doneButton.addEventListener("click", function() {
+    viewfinderContainer.style.overflow = "visible";
+    console.log("tree camera -- scrolling enabled");
+    viewfinderContainer.style.display = "none";
+    console.log("tree camera -- containers hidden");
+});
 
 // Start the app when the window loads
 startButton.addEventListener("click", startCamera); 
