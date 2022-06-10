@@ -1,36 +1,32 @@
-/* Z-INDEXES */
-/* #coord-num, #ready-text (display for location readings): 999
-#camera, #camera-vid, #camera-canvas: 1
-.center-wireframe: 2
-.camera-btn: 3
-.taken (actual picture): 4
-#err-instructions (show on location prompt error): 13 (why.)*/
 
-
+/* DO NOT COPY THIS -- FOR DEMO ONLY */
+/* SET OVERFLOW HIDDEN IN JS MANUALLY */
 html, body{
     margin: 0;
     padding: 0;
     height: 100%;
     width: 100%;
-    overflow: hidden;
+    /* overflow: hidden; */
     /* overflow-x: scroll; */
   }
 
-/* for dark background */
+/* Z-INDEXES */
+/*
+#camera, #camera-vid, #camera-canvas: 991
+.wireframe: 992
+.camera-btn: 993
+.taken (actual picture): 994
+*/
+
+/* for dark background, and scrolling toggle */
   #full-viewfinder-container {
     height: 100vh;
-    /* display: flex;
-    /* align-items: center;
-    justify-content: center;
-    flex-direction: column; */
 }
 
 /* item 1 */
 #camera-container {
     display: none;
     height: max-content;
-    /* position: absolute;
-    top: 0; */
 }
 
 /* item 2 */
@@ -48,7 +44,6 @@ html, body{
 }
 
 #wireframe-container {
-    /* height: 90%; */
     width: fit-content;
     height: fit-content;
     display: flex;
@@ -56,10 +51,10 @@ html, body{
     align-items: center;
 }
 
+/* wont really be used anyway?*/
 #result-container {
     display: none;
     text-align: center;
-    /* doesnt matter*/
     /* position: absolute;
     top: 0; */
 }
@@ -71,89 +66,32 @@ html, body{
 }
 
 #activate-btn {
-    cursor: pointer;
-    width: 150px;
-    background-color: #ff4e00;
-    color: white;
-    font-size: 16px;
-    border-radius: 30px;
-    border: none;
-    padding: 15px 20px;
     text-align: center;
-    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
-    display: block;
-    margin: 0 auto;
 }
 
 #camera-btn {
-    cursor: pointer;
-    width: 120px;
-    background-color: #ff4e00;
-    color: white;
-    font-size: 16px;
-    border-radius: 30px;
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
-    /* position: absolute; */
-    /* bottom: 30px; */
-    z-index: 3;
+    z-index: 993;
 }
 
-/* wireframe styling */
 #wireframe {
-    z-index: 2;
+    z-index: 992;
 }
 
-#retake-btn, #done-btn {
-    display: inline;
-    cursor: pointer;
-    width: 150px;
-    margin: 10px;
-    background-color: #ff4e00;
-    color: white;
-    font-size: 16px;
-    border-radius: 30px;
-    border: none;
-    padding: 15px 20px;
-    text-align: center;
-    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
-}
-
-#done-btn:disabled, #camera-btn:disabled {
-    cursor: not-allowed;
-}
-
-/* #retake-btn:hover, #upload-btn:hover {
-    background-color: darkgreen;
-} */
-  
 #camera-vid{
     position: absolute;
-    /* left: 0; */
-    /* top: 0; */
     object-fit: cover;
-    z-index: 1;
+    z-index: 991;
     object-position: center center !important;
 }
 
 #camera-canvas{
     position: absolute;
-    /* top: 0; */
-    z-index: 1;
+    z-index: 991;
     object-position: center center !important;
 }
 
 .taken{
-    z-index: 4;
-}
-
-#err-instructions {
-    z-index: 13;
-    display: none;
-    color: black;
-    text-align: center;
+    z-index: 994;
 }
 
 #capture-prompt {

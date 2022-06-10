@@ -43,8 +43,6 @@ function startCamera() {
 
     viewfinderContainer.height = windowHeight;
 
-    // document.querySelector("#actual-cam").style.height = calc + "px";
-
     cameraVid.width = windowWidth;
     cameraVid.height = calc;
 
@@ -89,9 +87,9 @@ function startCamera() {
 }
 
 //get filename to save img
-function getFileName() {
-    return "tree-kind_" + Date.now();
-}
+// function getFileName() {
+//     return "tree-kind_" + Date.now();
+// }
 
 //------------------------------------------------------//
 
