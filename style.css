@@ -151,9 +151,9 @@ html, body{
     height: 100%;
 }
 
-#camera-vid {
+/* #camera-vid {
     object-fit: none !important;
-}
+} */
 
 .taken{
     z-index: 4;
