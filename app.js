@@ -82,8 +82,8 @@ function startCamera() {
     remainderContainer.style.display = "block";
     viewfinderContainer.style.backgroundColor = "#333";
     //disable scroll temporarily
-    viewfinderContainer.style.overflow = "hidden";
-    console.log("tree camera -- scrolling disabled");
+    // viewfinderContainer.style.overflow = "hidden";
+    // console.log("tree camera -- scrolling disabled");
 }
 
 //get filename to save img
@@ -118,8 +118,8 @@ retakeButton.addEventListener("click", function() {
 //kinda temp behavior
 //close and re-enable scroll
 doneButton.addEventListener("click", function() {
-    viewfinderContainer.style.overflow = "visible";
-    console.log("tree camera -- scrolling enabled");
+    // viewfinderContainer.style.overflow = "visible";
+    // console.log("tree camera -- scrolling enabled");
     viewfinderContainer.style.display = "none";
     console.log("tree camera -- containers hidden");
 });
