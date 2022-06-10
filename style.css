@@ -46,7 +46,7 @@ html, body{
 
 #btn-prompt-container {
     text-align: center;
-    z-index: 10;
+    z-index: 90 !important;
 }
 
 #result-container {
