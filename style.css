@@ -102,5 +102,5 @@ html, body{
 }
 
 #camera-vid, #camera-canvas, #pic-output {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 4 / 3 !important;
 }
