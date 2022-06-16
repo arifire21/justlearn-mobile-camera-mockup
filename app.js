@@ -38,21 +38,21 @@ function startCamera() {
         }
     };
 
-    viewfinderContainer.height = windowHeight;
+    // viewfinderContainer.height = windowHeight;
 
     cameraVid.width = windowWidth;
-    cameraVid.height = calc;
+    cameraVid.height = (windowHeight * 0.75);
 
     cameraOutput.width = windowWidth;
-    cameraOutput.height = calc;
+    cameraOutput.height = (windowHeight * 0.75);
 
     cameraCanvas.width = windowWidth;
-    cameraCanvas.height = calc;
+    cameraCanvas.height = (windowHeight * 0.75);
 
-    document.querySelector("#wireframe").style.width = windowWidth + "px";
-    document.querySelector("#wireframe").style.height = calc + "px";
+    document.querySelector("#wireframe-container").style.height = (windowHeight * 0.75);
+    // document.querySelector("#wireframe").style.height = calc + "px";
 
-    document.querySelector("#remainder-container").style.height = (windowHeight - calc) + "px";
+    // document.querySelector("#remainder-container").style.height = (windowHeight - calc) + "px";
 
     //camera permissions and such
     if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
@@ -75,6 +75,9 @@ function startCamera() {
                cameraContainer.innerHTML = "Camera error - pleae check console."
             }
         });
+
+            //set wireframe
+
     }
 
     //show camera
@@ -96,6 +99,8 @@ function startCamera() {
 //EVENT LISTENERS
 // Take a picture when button is tapped
 cameraButton.addEventListener("click", function() {
+    cameraCanvas.width = cameraVid.videoWidth;
+    cameraCanvas.height = cameraVid.videoHeight;
     cameraCanvas.getContext("2d").drawImage(cameraVid, 0, 0, cameraVid.videoWidth, cameraVid.videoHeight, 0, 0, windowWidth, calc);
     cameraOutput.src = cameraCanvas.toDataURL("image/png");
     cameraOutput.classList.add("taken");

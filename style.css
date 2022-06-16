@@ -44,8 +44,8 @@ html, body{
 }
 
 #wireframe-container {
-    width: fit-content;
-    height: fit-content;
+    /* width: fit-content;
+    height: fit-content; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -101,6 +101,14 @@ html, body{
     margin: 0.5em 1em;
 }
 
-#camera-vid, #camera-canvas, #pic-output {
+/* #camera-vid, #pic-output {
     aspect-ratio: 4 / 3 !important;
+} */
+
+#camera-container {
+    height: 75%;
+}
+
+#remainder-container {
+    height: 25%;
 }
