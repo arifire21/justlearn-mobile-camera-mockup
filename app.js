@@ -38,10 +38,12 @@ function startCamera() {
         }
     };
 
+    //mimicking media rules
+    if(windowWidth <= 412){
     // viewfinderContainer.height = windowHeight;
 
     cameraContainer.style.height = calc;
-    remainderContainer.style.height = windowHeight - calc
+    remainderContainer.style.height = windowHeight - calc;
 
     cameraVid.width = windowWidth;
     cameraVid.height = calc;
@@ -53,6 +55,26 @@ function startCamera() {
     cameraCanvas.height = calc;
 
     document.querySelector("#wireframe-container").style.height = calc;
+    } else {
+        var desktopWidth = windowWidth * 0.50;
+
+        cameraContainer.style.height = calc;
+        remainderContainer.style.height = windowHeight - calc;
+    
+        cameraVid.width = desktopWidth;
+        cameraVid.height = calc;
+    
+        cameraOutput.width = desktopWidth;
+        cameraOutput.height = calc;
+    
+        cameraCanvas.width = desktopWidth;
+        cameraCanvas.height = calc;
+
+        cameraVid.style.marginLeft = "auto";
+        cameraVid.style.marginRight = "auto";
+    
+        document.querySelector("#wireframe-container").style.height = calc;
+    }
     // document.querySelector("#wireframe").style.height = calc + "px";
 
     // document.querySelector("#remainder-container").style.height = (windowHeight - calc) + "px";
