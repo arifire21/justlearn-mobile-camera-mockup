@@ -28,7 +28,7 @@ function startCamera() {
     windowWidth = window.innerWidth;
     const windowHeight = window.innerHeight;
 
-    calc = (windowWidth * aspectRatioConst);
+    calc = (windowHeight * 0.75);   //calc for height
 
     // format vid constraints face back camera by default
     const constraints = {
@@ -40,16 +40,19 @@ function startCamera() {
 
     // viewfinderContainer.height = windowHeight;
 
+    cameraContainer.style.height = calc;
+    remainderContainer.style.height = windowHeight - calc
+
     cameraVid.width = windowWidth;
-    cameraVid.height = (windowHeight * 0.75);
+    cameraVid.height = calc;
 
     cameraOutput.width = windowWidth;
-    cameraOutput.height = (windowHeight * 0.75);
+    cameraOutput.height = calc;
 
     cameraCanvas.width = windowWidth;
-    cameraCanvas.height = (windowHeight * 0.75);
+    cameraCanvas.height = calc;
 
-    document.querySelector("#wireframe-container").style.height = (windowHeight * 0.75);
+    document.querySelector("#wireframe-container").style.height = calc;
     // document.querySelector("#wireframe").style.height = calc + "px";
 
     // document.querySelector("#remainder-container").style.height = (windowHeight - calc) + "px";
